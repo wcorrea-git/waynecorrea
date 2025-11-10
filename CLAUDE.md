@@ -2,9 +2,26 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Quick Start
+
+**This is a zero-build-tools project** — just open `index.html` in a browser or use a local server:
+```bash
+# Python 3
+python -m http.server 8000
+
+# Python 2
+python -m SimpleHTTPServer 8000
+
+# Node.js
+npx http-server
+```
+Then visit `http://localhost:8000` and open your DevTools (F12) to inspect/debug.
+
+**No install needed.** Edit the HTML, CSS, or JS files directly and refresh your browser to see changes.
+
 ## Project Overview
 
-This is a modern, responsive personal portfolio website for Wayne Correa, a Cloud Infrastructure Product Leader. The site is built with vanilla HTML, CSS, and JavaScript—no frameworks or build tools required.
+This is a modern, responsive personal portfolio website for Wayne Correa, a Cloud Infrastructure Product Leader. The site is built with vanilla HTML, CSS, and JavaScript—**no frameworks, no build tools, no dependencies**.
 
 **Key stats:**
 - 28+ years in product management
@@ -53,11 +70,19 @@ The site uses a single-page application (SPA) design with smooth scrolling:
 
 This portfolio is designed to be rapidly customized for different job opportunities using your resume files in the Job-Search directory. Here's the workflow:
 
-### Typical Customization Flow
-1. **Select relevant resume** from `/home/wayne/AI-Projects/Job-Search/`
-2. **Extract key achievements** from the target role's resume version
-3. **Update the portfolio** with role-specific content (see quick edits below)
-4. **Test responsively** and verify all links work
+### Typical Customization Flow (5-10 minutes)
+1. **Identify the target role** and select the matching resume from `/home/wayne/AI-Projects/Job-Search/`
+2. **Extract key metrics** from the resume:
+   - Hero stats: Pick 3 strongest quantifiable results (28+ years, $134M, 347% growth, etc.)
+   - Hero subtitle: Craft a 1-line hook emphasizing what the role cares about
+   - Achievement cards: Select 6 examples that directly address job description keywords
+   - Expertise order: Reorder 4 categories to match what the job posting emphasizes
+3. **Update the portfolio** content (see "Quick Reference" table below for exact locations)
+4. **Test locally** using local server:
+   - Responsive design (test at 320px, 768px, 1440px widths)
+   - All anchor links work
+   - Contact form submits successfully
+   - No console errors (F12)
 5. **Deploy** to relevant portfolio URL/domain
 
 ### Quick Edits for Different Roles
@@ -83,30 +108,43 @@ This portfolio is designed to be rapidly customized for different job opportunit
 - **Expertise sections** (index.html:128-167): Match 4 categories to job description keywords
 - **Timeline** (index.html:177-237): Keep all entries, let achievement cards emphasize relevance
 
-## Common Development Tasks
+## Development Workflow
 
-### Adding New Content
-1. **Update hero subtitle**: Edit text in `index.html:33` - this is the first impression
-2. **Update hero stats**: Edit the `.stat-card` elements in `index.html:35-46` - pull from resume metrics
-3. **Reorder achievement cards**: Move `.achievement-card` divs in `index.html:83-118` - put most relevant first
-4. **Update expertise category order**: Reorder `.expertise-category` divs in `index.html:128-167` - emphasize job-relevant skills
-5. **Add timeline item**: Insert new `.timeline-item` in `index.html:177-237`
+### Local Testing
+1. **Start a local server** (see Quick Start above)
+2. **Open DevTools** with F12 to inspect elements and debug
+3. **Test responsive design** — DevTools → toggle device toolbar (Ctrl+Shift+M / Cmd+Shift+M)
+4. **Check console** for any JavaScript errors
+5. **Test form submission** — fill out contact form and verify email arrives
+6. **Test all browsers** — Chrome, Firefox, Safari, Edge (uses ES6+ features)
 
-### Styling Changes
-- Update CSS variables in `:root` (styles.css:5-18) to change colors globally
-- Mobile-first responsive design: start with mobile styles, use media queries for larger screens
-- Key breakpoints are 768px and 480px (see styles.css:724-819)
+### Content Updates (for Job Customization)
+1. **Update hero subtitle** (`index.html:33`) — this is the first impression
+2. **Update hero stats** (`.stat-card` in `index.html:35-46`) — pull 3 metrics from resume
+3. **Reorder achievement cards** (`.achievement-card` in `index.html:83-118`) — put most relevant first
+4. **Reorder expertise categories** (`.expertise-category` in `index.html:128-167`) — match job description keywords
+5. **Add/update timeline** (`.timeline-item` in `index.html:177-237`) — keep chronological order
 
-### Contact Form
-- Currently sends to Formspree endpoint `https://formspree.io/f/myzopbzd` (script.js:68)
-- To change recipient email: create new Formspree form at formspree.io, update endpoint in script.js
-- Form validation is handled by HTML5 `required` attributes
+### Styling & Theme Changes
+- **Global colors**: Update CSS variables in `:root` (styles.css:5-18)
+  - `--primary-color` (#0066ff) — main brand blue
+  - `--secondary-color` (#ff6b35) — accent orange
+  - All other colors cascade from these two
+- **Responsive design**: Mobile-first approach
+  - Base styles apply to all screens
+  - Media queries at 768px (tablet) and 480px (mobile)
+  - Adjust in styles.css:724-819
+- **Typography**: Change font imports in index.html:10-12 if needed
 
-### Testing & Validation
-- Open `index.html` directly in browser to test (no build step needed)
-- Check responsive design using browser DevTools (F12, toggle device toolbar)
-- Verify form submission works with Formspree
-- Test smooth scrolling and animations in all modern browsers
+### Contact Form Configuration
+- **Current endpoint**: `https://formspree.io/f/myzopbzd` (script.js:68)
+- **Recipient email**: waynejcorrea@gmail.com
+- **To change recipient**:
+  1. Go to formspree.io and create a new form
+  2. Update the endpoint URL in script.js:68
+  3. Test by submitting the form
+- **Form validation**: HTML5 `required` attributes handle validation
+- **Fallback**: If Formspree is down, error handler shows fallback email
 
 ## Quick Reference: Edit Locations
 
@@ -173,6 +211,46 @@ The form uses async fetch to Formspree. Error handling provides fallback email a
 
 ### Active Nav Link (script.js:190-208)
 Detects current section based on scroll position with 200px offset. Links update dynamically. The active state adds `active` class which triggers the underline (defined in CSS but not currently visible—could be styled further).
+
+## Troubleshooting
+
+### Form Submission Not Working
+- **Check Formspree status**: Visit formspree.io to verify the form exists and is active
+- **Check endpoint**: Verify the URL in script.js:68 matches the one from Formspree dashboard
+- **Check browser console**: Look for CORS errors or network failures (F12 → Console tab)
+- **Fallback behavior**: If Formspree fails, error message shows `waynejcorrea@gmail.com` for manual contact
+- **Test locally**: Formspree may reject localhost requests — test on deployed domain instead
+
+### Google Fonts Not Loading
+- **Check internet connection**: Fonts are loaded from fonts.googleapis.com (requires HTTPS or localhost)
+- **Fallback fonts**: If Google Fonts fails, system defaults to serif/sans-serif (acceptable but less polished)
+- **Test offline**: Run locally without internet — fonts will not load, but site remains functional
+- **Self-host fonts**: Download Inter and Outfit fonts and replace links in index.html:10-12 for offline version
+
+### Animations Not Triggering
+- **Check IntersectionObserver support**: Supported in all modern browsers (IE11+ with polyfill)
+- **Check scroll position**: Animations fire when elements enter viewport (not when page first loads)
+- **Disable for testing**: Set opacity to 1 in styles.css:210 to verify animations aren't blocking visibility
+
+### Stats Counter Not Animating
+- **Check format**: Counter only animates values with $M (millions), % (percent), or + (count) suffix
+- **Example formats**:
+  - ✅ `$134M` (revenue)
+  - ✅ `28+` (count)
+  - ✅ `347%` (percentage)
+  - ❌ `134M` (missing $)
+  - ❌ `28 years` (text suffix breaks parser)
+
+### Responsive Design Issues
+- **Test breakpoints**: Use DevTools device toolbar at 480px, 768px, 1440px
+- **Check media queries**: Mobile-first breakpoints in styles.css:724-819
+- **Test on real devices**: iPhone, iPad, Android phones may render differently than DevTools simulation
+- **Clear cache**: Hard refresh (Ctrl+Shift+R / Cmd+Shift+R) to bypass browser cache
+
+### Browser Compatibility
+- **Supported**: Chrome, Firefox, Safari, Edge (all modern versions)
+- **Not supported**: IE11 and older (ES6+ JavaScript not compatible)
+- **Graceful degradation**: If JavaScript fails, basic structure still visible
 
 ## Deployment
 
