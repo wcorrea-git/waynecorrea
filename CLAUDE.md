@@ -19,6 +19,21 @@ Then visit `http://localhost:8000` and open your DevTools (F12) to inspect/debug
 
 **No install needed.** Edit the HTML, CSS, or JS files directly and refresh your browser to see changes.
 
+## Commands
+
+This project has **zero build tools** — no npm scripts, no build process, no compilation needed. Everything runs directly in the browser:
+
+```bash
+# Start a local development server (pick one)
+python -m http.server 8000          # Python 3
+npx http-server                      # Node.js
+python -m SimpleHTTPServer 8000     # Python 2 (legacy)
+```
+
+Then navigate to `http://localhost:8000` in your browser. Changes to HTML/CSS/JS are immediately visible on refresh.
+
+**No other commands needed** — this is a static site with no dependencies to install, lint, test, or build.
+
 ## Project Overview
 
 This is a modern, responsive personal portfolio website for Wayne Correa, a Cloud Infrastructure Product Leader. The site is built with vanilla HTML, CSS, and JavaScript—**no frameworks, no build tools, no dependencies**.
@@ -110,6 +125,13 @@ This portfolio is designed to be rapidly customized for different job opportunit
 - **Achievement cards** (index.html:83-118): 6 best examples from your experience, ordered by relevance to role
 - **Expertise sections** (index.html:128-167): Match 4 categories to job description keywords
 - **Timeline** (index.html:177-237): Keep all entries, let achievement cards emphasize relevance
+
+### SEO & Meta Tags
+When customizing for different roles, update these meta tags for better search visibility and social sharing (index.html:6-7):
+- **Description** (`<meta name="description">`): Keep under 160 characters; include role, years of experience, and key metrics
+- **Keywords** (`<meta name="keywords">`): Comma-separated list matching job description keywords (e.g., "Product Manager, SaaS, B2B")
+- **Page Title** (`<title>`): Use format "Name | Role Specialization" for better SEO
+- **Example**: For a Cloud Platform PM role, update to: "Wayne Correa | Cloud Platform Product Manager"
 
 ## Development Workflow
 
@@ -212,6 +234,29 @@ The experience timeline alternates left/right using CSS `direction: rtl` on even
 ### Active Nav Link (script.js:135-160)
 Detects current section based on scroll position with 200px offset. Links update dynamically. The active state adds `active` class which triggers the underline (defined in CSS but not currently visible—could be styled further).
 
+### IntersectionObserver Cleanup (script.js:27-43)
+The scroll animations use IntersectionObserver with automatic cleanup via `observer.unobserve()` after each element animates in. This is critical for performance:
+- **Why it matters**: Without cleanup, the observer would keep polling all elements, wasting CPU cycles
+- **How it works**: Each element fades in once, then gets unwatched — subsequent scrolls don't re-trigger animations
+- **Modifying it**: If you want elements to animate on every scroll (not recommended), remove the `observer.unobserve()` call but expect performance impact
+- **Threshold of 0.1**: Elements animate when 10% of their area is visible; adjust `threshold: 0.1` in observerOptions to change this behavior
+
+### Parallax Effect (script.js:164-180)
+The hero section includes a subtle parallax effect on the gradient circle background element. It uses `requestAnimationFrame` for smooth 60fps updates:
+- **Performance**: Uses `transform: translateY()` (GPU-accelerated) not `top/position` properties
+- **Customization**: Multiply factor in line ~172 controls intensity (higher = more dramatic parallax)
+- **Why not more visible**: Subtle parallax is professional; aggressive parallax can cause motion sickness
+
+## Known Limitations
+
+- **No JavaScript bundling/minification**: All JS runs in a single file without tree-shaking. Good for small sites, but keep script.js under 10KB
+- **No offline fonts**: Google Fonts requires internet connection; site gracefully degrades to system fonts but loses design polish
+- **No form backend without Formspree**: Contact form submission requires Formspree service (requires internet, not suitable for fully offline use)
+- **No dark mode toggle**: CSS variables are set at build time in `:root`. Adding dark mode would require JavaScript to swap themes dynamically
+- **No real-time notifications**: No build process means no asset versioning. Users must hard-refresh (Ctrl+Shift+R) to see CSS/JS changes
+- **Mobile menu not implemented**: Navigation is always visible (hamburger menu would need additional JS). Works fine on mobile but takes vertical space
+- **Stats counter limited to 4 visible cards**: Responsive design limits to 2x2 grid on tablet; adding more stats requires layout redesign
+
 ## Troubleshooting
 
 ### Google Fonts Not Loading
@@ -248,7 +293,29 @@ Detects current section based on scroll position with 200px offset. Links update
 
 ## Deployment
 
-- Deploy entire directory as-is to any static hosting (GitHub Pages, Netlify, Vercel, etc.)
+### Quick Deploy Options
+
+**Any static hosting works** (GitHub Pages, Netlify, Vercel, etc.) — just upload all files as-is:
+
 - No environment variables or secrets needed (Formspree form ID is public)
-- Works offline except for Google Fonts and Formspree
+- No build step required
+- Works offline except for Google Fonts and Formspree CDN
 - All modern browsers supported (uses ES6+ JavaScript features)
+
+### GitHub Pages (waynecorrea.com)
+
+The `CNAME` file is configured for GitHub Pages with custom domain:
+
+1. **Custom domain setup**: `CNAME` file points to `waynecorrea.com`
+2. **DNS configuration**: Domain registrar must have A records pointing to GitHub's servers (185.199.108.153, etc.)
+3. **HTTPS**: GitHub Pages automatically provisions SSL certificate (required for Google Fonts)
+4. **Deployment**: Push changes to `master` branch → GitHub Pages auto-deploys in ~1 minute
+5. **Branch requirement**: Ensure GitHub Pages is set to deploy from `master` branch (check repo Settings → Pages)
+
+### Netlify/Vercel (Alternative)
+
+If switching away from GitHub Pages:
+1. Delete the `CNAME` file (GitHub Pages-specific)
+2. Connect repo to Netlify/Vercel and select deploy branch
+3. No configuration needed — they auto-detect static HTML
+4. Environment: These services also provide HTTPS automatically
