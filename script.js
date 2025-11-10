@@ -43,53 +43,6 @@ document.querySelectorAll('.achievement-card, .expertise-category, .timeline-con
 });
 
 // =====================================================
-// CONTACT FORM HANDLING
-// =====================================================
-
-const contactForm = document.getElementById('contactForm');
-const formStatus = document.getElementById('formStatus');
-
-if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        // Show loading state
-        formStatus.textContent = 'Sending...';
-        formStatus.className = 'form-status success';
-
-        try {
-            // Create FormData from the form for better compatibility with Formspree
-            const formData = new FormData(contactForm);
-
-            // Use Formspree API for no-backend form handling
-            const response = await fetch('https://formspree.io/f/myzopbzd', {
-                method: 'POST',
-                body: formData
-            });
-
-            const responseData = await response.json();
-
-            if (response.ok && responseData.ok) {
-                formStatus.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
-                formStatus.className = 'form-status success';
-                contactForm.reset();
-
-                // Clear status after 5 seconds
-                setTimeout(() => {
-                    formStatus.className = 'form-status';
-                }, 5000);
-            } else {
-                throw new Error(responseData.error || 'Form submission failed');
-            }
-        } catch (error) {
-            formStatus.textContent = '✗ Error sending message. Please try emailing directly: waynejcorrea@gmail.com';
-            formStatus.className = 'form-status error';
-            console.error('Form error:', error);
-        }
-    });
-}
-
-// =====================================================
 // STATS COUNTER ANIMATION
 // =====================================================
 
