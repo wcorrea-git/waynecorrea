@@ -102,7 +102,16 @@ function animateCounters() {
     const stats = document.querySelectorAll('.stat-number');
 
     stats.forEach(stat => {
-        const target = parseInt(stat.textContent.replace(/\D/g, ''));
+        const originalText = stat.textContent;
+
+        // Extract the numeric value with decimal support
+        const numberMatch = originalText.match(/[\d.]+/);
+        const target = numberMatch ? parseFloat(numberMatch[0]) : 0;
+
+        // Extract the suffix (B, M, %, +)
+        const suffix = originalText.replace(/[\d$.]/g, '');
+        const hasDollar = originalText.includes('$');
+
         const increment = target / 30;
         let current = 0;
 
@@ -111,25 +120,15 @@ function animateCounters() {
             if (current >= target) {
                 current = target;
                 clearInterval(timer);
-
-                // Format the number properly
-                if (stat.textContent.includes('$')) {
-                    stat.textContent = '$' + target + 'M';
-                } else if (stat.textContent.includes('%')) {
-                    stat.textContent = Math.round(current) + '%';
-                } else if (stat.textContent.includes('+')) {
-                    stat.textContent = Math.round(current) + '+';
-                }
-            } else {
-                const formatted = Math.round(current);
-                if (stat.textContent.includes('$')) {
-                    stat.textContent = '$' + formatted + 'M';
-                } else if (stat.textContent.includes('%')) {
-                    stat.textContent = Math.round(current) + '%';
-                } else if (stat.textContent.includes('+')) {
-                    stat.textContent = Math.round(current) + '+';
-                }
             }
+
+            // Format output
+            let display = current.toFixed(suffix === 'B' ? 1 : 0);
+            if (hasDollar) display = '$' + display;
+            display += suffix;
+            stat.textContent = display;
+
+            if (current >= target) clearInterval(timer);
         }, 50);
     });
 }
