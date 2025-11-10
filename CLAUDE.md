@@ -56,7 +56,7 @@ The site uses a single-page application (SPA) design with smooth scrolling:
 - **Stats counter animation** - Numbers animate upward when hero section is visible
 - **Parallax effect** - Subtle parallax on gradient circle in hero
 - **Navbar scroll effect** - Shadow changes on scroll
-- **Contact form** - Uses Formspree API (myzopbzd) to send emails to waynejcorrea@gmail.com
+- **Contact form** - Uses Formspree API (myzopbzd) to send emails to email@waynecorrea.com
 
 ### CSS Design System
 - **Color scheme**: Primary blue (#0066ff), secondary orange (#ff6b35), light gray backgrounds
@@ -138,7 +138,7 @@ This portfolio is designed to be rapidly customized for different job opportunit
 
 ### Contact Form Configuration
 - **Current endpoint**: `https://formspree.io/f/myzopbzd` (script.js:68)
-- **Recipient email**: waynejcorrea@gmail.com
+- **Recipient email**: email@waynecorrea.com
 - **To change recipient**:
   1. Go to formspree.io and create a new form
   2. Update the endpoint URL in script.js:68
@@ -207,7 +207,7 @@ The counter animation parses text content to detect format (currency with $M, pe
 The experience timeline alternates left/right using CSS `direction: rtl` on even items. This creates the classic alternating timeline look. Maintain this pattern when adding new experiences.
 
 ### Form Submission (script.js:53-94)
-The form uses async fetch to Formspree. Error handling provides fallback email address (waynejcorrea@gmail.com). Status messages display for 5 seconds on success.
+The form uses async fetch to Formspree. Error handling provides fallback email address (email@waynecorrea.com). Status messages display for 5 seconds on success.
 
 ### Active Nav Link (script.js:190-208)
 Detects current section based on scroll position with 200px offset. Links update dynamically. The active state adds `active` class which triggers the underline (defined in CSS but not currently visible—could be styled further).
@@ -218,7 +218,7 @@ Detects current section based on scroll position with 200px offset. Links update
 - **Check Formspree status**: Visit formspree.io to verify the form exists and is active
 - **Check endpoint**: Verify the URL in script.js:68 matches the one from Formspree dashboard
 - **Check browser console**: Look for CORS errors or network failures (F12 → Console tab)
-- **Fallback behavior**: If Formspree fails, error message shows `waynejcorrea@gmail.com` for manual contact
+- **Fallback behavior**: If Formspree fails, error message shows `email@waynecorrea.com` for manual contact
 - **Test locally**: Formspree may reject localhost requests — test on deployed domain instead
 
 ### Google Fonts Not Loading

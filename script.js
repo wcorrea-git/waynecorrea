@@ -188,4 +188,4 @@ document.body.style.transition = 'opacity 0.5s ease-out';
 
 console.log('%cWayne Correa - Cloud Infrastructure Product Leader', 'font-size: 16px; font-weight: bold; color: #0066ff;');
 console.log('%cBuilding the future of enterprise cloud connectivity', 'font-size: 12px; color: #64748b;');
-console.log('%cContact: waynejcorrea@gmail.com | LinkedIn: linkedin.com/in/waynecorrea', 'font-size: 11px; color: #94a3b8;');
+console.log('%cContact: email@waynecorrea.com | LinkedIn: linkedin.com/in/waynecorrea', 'font-size: 11px; color: #94a3b8;');
