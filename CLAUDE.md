@@ -73,15 +73,15 @@ This portfolio is designed to be rapidly customized for different job opportunit
 ### Typical Customization Flow (5-10 minutes)
 1. **Identify the target role** and select the matching resume from `/home/wayne/AI-Projects/Job-Search/`
 2. **Extract key metrics** from the resume:
-   - Hero stats: Pick 3 strongest quantifiable results (28+ years, $134M, 347% growth, etc.)
+   - Hero stats: Pick 4 strongest quantifiable results (28+ years, $1.4B, 200%, etc.)
    - Hero subtitle: Craft a 1-line hook emphasizing what the role cares about
    - Achievement cards: Select 6 examples that directly address job description keywords
    - Expertise order: Reorder 4 categories to match what the job posting emphasizes
 3. **Update the portfolio** content (see "Quick Reference" table below for exact locations)
 4. **Test locally** using local server:
    - Responsive design (test at 320px, 768px, 1440px widths)
-   - All anchor links work
-   - Contact form submits successfully
+   - All anchor links work and scroll smoothly
+   - Animations trigger on scroll (stats counter, card fade-ins)
    - No console errors (F12)
 5. **Deploy** to relevant portfolio URL/domain
 
@@ -91,19 +91,22 @@ This portfolio is designed to be rapidly customized for different job opportunit
 - Update hero subtitle (index.html:33) to emphasize product strategy focus
 - Reorder achievement cards (index.html:83-118) to highlight product launches first
 - Adjust expertise section (index.html:128-167) to emphasize "Product & Strategy"
+- Update 4 hero stats (index.html:35-50) to show product-relevant metrics
 
 **For Leadership/Sales roles:**
-- Emphasize revenue delivery in hero stats (index.html:35-46)
+- Emphasize revenue delivery in hero stats (index.html:35-50)
 - Move "Enterprise Sales Excellence" achievement card to top
 - Highlight "Leadership & Sales" expertise category
+- Update stats to show leadership-relevant metrics
 
 **For Cloud/Infrastructure roles:**
 - Focus hero on technical infrastructure achievements
 - Lead with "Cloud & Infrastructure" expertise category (index.html:128-137)
 - Highlight Equinix and IBM Direct Link experiences in timeline
+- Update stats to show infrastructure-relevant metrics
 
 ### Content Mapping from Resumes
-- **Hero stats** (index.html:35-46): Pull 3 strongest metrics from resume
+- **Hero stats** (index.html:35-50): Pull 4 strongest metrics from resume (displayed in single row on desktop, wraps on mobile)
 - **Achievement cards** (index.html:83-118): 6 best examples from your experience, ordered by relevance to role
 - **Expertise sections** (index.html:128-167): Match 4 categories to job description keywords
 - **Timeline** (index.html:177-237): Keep all entries, let achievement cards emphasize relevance
@@ -136,15 +139,15 @@ This portfolio is designed to be rapidly customized for different job opportunit
   - Adjust in styles.css:724-819
 - **Typography**: Change font imports in index.html:10-12 if needed
 
-### Contact Form Configuration
-- **Current endpoint**: `https://formspree.io/f/myzopbzd` (script.js:68)
-- **Recipient email**: email@waynecorrea.com
-- **To change recipient**:
-  1. Go to formspree.io and create a new form
-  2. Update the endpoint URL in script.js:68
-  3. Test by submitting the form
-- **Form validation**: HTML5 `required` attributes handle validation
-- **Fallback**: If Formspree is down, error handler shows fallback email
+### Contact Section
+- **Contact info**: Name, email, and links in footer section (index.html:238+)
+- **Email**: email@waynecorrea.com
+- **Note**: Direct contact form submission has been removed in favor of displaying contact information and email link
+- **If you want to re-add a contact form**:
+  1. The old Formspree endpoint was `https://formspree.io/f/myzopbzd`
+  2. Add a form element in the contact section
+  3. Update script.js to handle form submission
+  4. Test with a real email address before deployment
 
 ## Quick Reference: Edit Locations
 
@@ -153,7 +156,7 @@ Quick lookup for the most common edits when customizing for different roles:
 | Content | File | Lines | Notes |
 |---------|------|-------|-------|
 | Hero subtitle (first impression) | index.html | 33 | Update to match role focus |
-| Hero stats (3 key metrics) | index.html | 35-46 | Pull from resume |
+| Hero stats (4 key metrics) | index.html | 35-50 | Pull from resume; 4 stat cards displayed |
 | Achievement cards | index.html | 83-118 | 6 cards total; reorder by relevance |
 | Cloud & Infrastructure skills | index.html | 128-137 | First expertise category |
 | Product & Strategy skills | index.html | 139-147 | Second expertise category |
@@ -162,17 +165,17 @@ Quick lookup for the most common edits when customizing for different roles:
 | Timeline items (experience) | index.html | 177-237 | 5 entries total; order is chronological |
 | Color scheme (CSS variables) | styles.css | 5-18 | Primary (#0066ff), secondary (#ff6b35) |
 | Responsive breakpoints | styles.css | 724-819 | 768px (tablet), 480px (mobile) |
-| Contact form API endpoint | script.js | 68 | Formspree form ID |
-| Stats counter animation | script.js | 101-135 | Detects $M, %, or + formatting |
-| Active nav highlighting | script.js | 190-208 | Updates on scroll (200px offset) |
+| Stats counter animation | script.js | 49-82 | Detects $M, B, %, or + formatting |
+| Active nav highlighting | script.js | 135-160 | Updates on scroll (200px offset) |
 
 ## File Structure
 
 ```
 waynecorrea/
-├── index.html          # Main HTML file with all content
-├── styles.css          # All styling (800+ lines, well-commented)
-├── script.js           # Client-side interactivity (245 lines)
+├── index.html          # Main HTML file with all content (299 lines)
+├── styles.css          # All styling (756 lines, well-commented)
+├── script.js           # Client-side interactivity (191 lines)
+├── CNAME               # Custom domain configuration
 └── CLAUDE.md           # This file
 
 Related directory:
@@ -206,20 +209,10 @@ The counter animation parses text content to detect format (currency with $M, pe
 ### Timeline Alternation (styles.css:476-482)
 The experience timeline alternates left/right using CSS `direction: rtl` on even items. This creates the classic alternating timeline look. Maintain this pattern when adding new experiences.
 
-### Form Submission (script.js:53-94)
-The form uses async fetch to Formspree. Error handling provides fallback email address (email@waynecorrea.com). Status messages display for 5 seconds on success.
-
-### Active Nav Link (script.js:190-208)
+### Active Nav Link (script.js:135-160)
 Detects current section based on scroll position with 200px offset. Links update dynamically. The active state adds `active` class which triggers the underline (defined in CSS but not currently visible—could be styled further).
 
 ## Troubleshooting
-
-### Form Submission Not Working
-- **Check Formspree status**: Visit formspree.io to verify the form exists and is active
-- **Check endpoint**: Verify the URL in script.js:68 matches the one from Formspree dashboard
-- **Check browser console**: Look for CORS errors or network failures (F12 → Console tab)
-- **Fallback behavior**: If Formspree fails, error message shows `email@waynecorrea.com` for manual contact
-- **Test locally**: Formspree may reject localhost requests — test on deployed domain instead
 
 ### Google Fonts Not Loading
 - **Check internet connection**: Fonts are loaded from fonts.googleapis.com (requires HTTPS or localhost)
@@ -233,12 +226,13 @@ Detects current section based on scroll position with 200px offset. Links update
 - **Disable for testing**: Set opacity to 1 in styles.css:210 to verify animations aren't blocking visibility
 
 ### Stats Counter Not Animating
-- **Check format**: Counter only animates values with $M (millions), % (percent), or + (count) suffix
+- **Check format**: Counter animates values with $M (millions), $B (billions), % (percent), or + (count) suffix
 - **Example formats**:
-  - ✅ `$134M` (revenue)
+  - ✅ `$1.4B` (revenue in billions)
   - ✅ `28+` (count)
-  - ✅ `347%` (percentage)
-  - ❌ `134M` (missing $)
+  - ✅ `200%` (percentage)
+  - ✅ `10+` (year count)
+  - ❌ `1.4B` (missing $)
   - ❌ `28 years` (text suffix breaks parser)
 
 ### Responsive Design Issues
