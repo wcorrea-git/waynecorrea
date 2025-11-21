@@ -4,35 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Quick Start
 
-**This is a zero-build-tools project** — just open `index.html` in a browser or use a local server:
-```bash
-# Python 3
-python -m http.server 8000
-
-# Python 2
-python -m SimpleHTTPServer 8000
-
-# Node.js
-npx http-server
-```
-Then visit `http://localhost:8000` and open your DevTools (F12) to inspect/debug.
-
-**No install needed.** Edit the HTML, CSS, or JS files directly and refresh your browser to see changes.
-
-## Commands
-
-This project has **zero build tools** — no npm scripts, no build process, no compilation needed. Everything runs directly in the browser:
+**Zero build tools** — just serve the files with a local server and edit directly:
 
 ```bash
-# Start a local development server (pick one)
+# Start a local server (pick one)
 python -m http.server 8000          # Python 3
 npx http-server                      # Node.js
-python -m SimpleHTTPServer 8000     # Python 2 (legacy)
+python -m SimpleHTTPServer 8000     # Python 2
 ```
 
-Then navigate to `http://localhost:8000` in your browser. Changes to HTML/CSS/JS are immediately visible on refresh.
+Visit `http://localhost:8000`, then open DevTools (F12) to debug. Changes to HTML/CSS/JS are visible on refresh.
 
-**No other commands needed** — this is a static site with no dependencies to install, lint, test, or build.
+**No install, no build step, no dependencies.**
 
 ## Project Overview
 
@@ -51,35 +34,32 @@ This is a modern, responsive personal portfolio website for Wayne Correa, a Clou
 - **External**: Google Fonts (Inter, Outfit), Formspree for contact form backend
 - **Hosting**: Static site suitable for any web host or CDN
 
-## Architecture & Key Components
+## Architecture
 
-### Page Structure
-The site uses a single-page application (SPA) design with smooth scrolling:
-1. **Navigation (sticky navbar)** - Links to all sections with active state highlighting
-2. **Hero Section** - Eye-catching intro with stats cards and CTAs
-3. **About** - Personal introduction with sticky highlight box
-4. **Achievements** - 6 achievement cards in responsive grid
-5. **Expertise** - 4 categories of skills with checkmark styling
-6. **Experience** - Timeline layout (alternating left/right on desktop)
-7. **Contact** - Gradient background with contact info + contact form
-8. **Footer** - Simple footer with copyright
+**Single-page design** with 8 main sections (navigation links in index.html:19-25):
+1. **Hero** — Stats cards with animated counter (script.js:49-82) + parallax gradient circle (script.js:164-180)
+2. **About** — Text intro + sticky highlight box
+3. **Achievements** — 6 cards in responsive grid, fade-in on scroll
+4. **Expertise** — 4 skill categories with emoji headers
+5. **Experience** — 6 timeline items with alternating left/right layout
+6. **Contact** — Email/phone links (contact form removed; use Formspree for re-adds)
+7. **Footer** — Simple copyright
+8. **Sticky Navigation** — Updates active state dynamically based on scroll position
 
-### Key JavaScript Behaviors
-- **Smooth scrolling** - Anchor links scroll smoothly to sections
-- **Scroll animations** - Elements fade in as they enter viewport (IntersectionObserver)
-- **Active nav highlighting** - Highlights current section in navigation based on scroll position
-- **Stats counter animation** - Numbers animate upward when hero section is visible
-- **Parallax effect** - Subtle parallax on gradient circle in hero
-- **Navbar scroll effect** - Shadow changes on scroll
-- **Contact form** - Uses Formspree API (myzopbzd) to send emails to email@waynecorrea.com
+**Key interactivity** (all in script.js):
+- Smooth anchor-link scrolling (lines 5-16)
+- Fade-in animations via IntersectionObserver (lines 22-43; auto-unobserves for performance)
+- Stats counter animation with format parsing (lines 49-82; detects $M, $B, %, +)
+- Active nav highlighting (lines 135-160; 200px offset threshold)
+- Parallax effect on hero gradient circle (lines 164-180; GPU-accelerated via transform)
 
-### CSS Design System
-- **Color scheme**: Primary blue (#0066ff), secondary orange (#ff6b35), light gray backgrounds
-- **Gradients**: Two main gradients (blue and orange) used throughout
-- **Typography**: Inter (body), Outfit (headings) from Google Fonts
-- **Shadows**: Three levels (sm, md, lg) for depth
-- **Spacing**: Consistent 80px section padding, responsive gaps
-- **Responsive breakpoints**: 768px (tablet), 480px (mobile)
+**Design system** (CSS variables in styles.css:5-18):
+- Colors: Primary blue (#0066ff), secondary orange (#ff6b35)
+- Gradients: Two main ones (blue/orange) applied throughout
+- Fonts: Inter (body), Outfit (headings) from Google Fonts
+- Shadows: Three levels (sm, md, lg) for depth
+- Spacing: 80px sections, responsive gaps (container padding 40px)
+- Breakpoints: 768px (tablet), 480px (mobile)
 
 ## Customization for Job Opportunities
 
@@ -135,41 +115,18 @@ When customizing for different roles, update these meta tags for better search v
 
 ## Development Workflow
 
-### Local Testing
-1. **Start a local server** (see Quick Start above)
-2. **Open DevTools** with F12 to inspect elements and debug
-3. **Test responsive design** — DevTools → toggle device toolbar (Ctrl+Shift+M / Cmd+Shift+M)
-4. **Check console** for any JavaScript errors
-5. **Test form submission** — fill out contact form and verify email arrives
-6. **Test all browsers** — Chrome, Firefox, Safari, Edge (uses ES6+ features)
+**Testing**: Start local server (see Quick Start), open DevTools (F12), toggle device toolbar (Ctrl+Shift+M) for responsive testing. Check console for errors. Test across Chrome, Firefox, Safari, Edge (ES6+ required).
 
-### Content Updates (for Job Customization)
-1. **Update hero subtitle** (`index.html:33`) — this is the first impression
-2. **Update hero stats** (`.stat-card` in `index.html:35-46`) — pull 3 metrics from resume
-3. **Reorder achievement cards** (`.achievement-card` in `index.html:83-118`) — put most relevant first
-4. **Reorder expertise categories** (`.expertise-category` in `index.html:128-167`) — match job description keywords
-5. **Add/update timeline** (`.timeline-item` in `index.html:177-237`) — keep chronological order
+**Content edits for role customization** (see Quick Reference table below):
+- Hero subtitle (index.html:33)
+- Hero stats 4 cards (index.html:35-50) — must use format: `$1.4B`, `28+`, `200%`, etc.
+- Achievement cards reorder (index.html:83-118)
+- Expertise categories reorder (index.html:128-167)
+- Timeline items (index.html:177-237) — keep chronological
 
-### Styling & Theme Changes
-- **Global colors**: Update CSS variables in `:root` (styles.css:5-18)
-  - `--primary-color` (#0066ff) — main brand blue
-  - `--secondary-color` (#ff6b35) — accent orange
-  - All other colors cascade from these two
-- **Responsive design**: Mobile-first approach
-  - Base styles apply to all screens
-  - Media queries at 768px (tablet) and 480px (mobile)
-  - Adjust in styles.css:724-819
-- **Typography**: Change font imports in index.html:10-12 if needed
+**Theming**: Edit CSS variables in styles.css:5-18 (primary/secondary colors cascade to all gradients and shadows). Responsive design mobile-first; media queries at 768px and 480px in styles.css:724-819. Font imports in index.html:10-12.
 
-### Contact Section
-- **Contact info**: Name, email, and links in footer section (index.html:238+)
-- **Email**: email@waynecorrea.com
-- **Note**: Direct contact form submission has been removed in favor of displaying contact information and email link
-- **If you want to re-add a contact form**:
-  1. The old Formspree endpoint was `https://formspree.io/f/myzopbzd`
-  2. Add a form element in the contact section
-  3. Update script.js to handle form submission
-  4. Test with a real email address before deployment
+**Contact section**: Email/phone/LinkedIn links in index.html:285-296. Form removed; to re-add: use Formspree endpoint `https://formspree.io/f/myzopbzd` and update script.js.
 
 ## Quick Reference: Edit Locations
 
@@ -216,106 +173,47 @@ Related directory:
 - Parallax effect uses `transform` property (GPU-accelerated)
 - Contact form offloads backend to Formspree (zero-cost for non-commercial use)
 
-## Important Implementation Details
+## Key Implementation Details
 
-### Syncing with Job-Search Resumes
-The portfolio content should align with your resume files in `/home/wayne/AI-Projects/Job-Search/`. Key alignment points:
-- **Hero stats**: Extract 3 strongest quantifiable results from the target resume
-- **Achievement cards**: Pull 6 best examples that match the job description
-- **Expertise sections**: Reorder or emphasize categories matching job requirements
-- When tailoring for a specific opportunity, review the corresponding resume first to ensure consistency
+**Stats Counter** (script.js:49-82): Parses text to detect format ($M, $B, %, +). Animates over 30 steps at 50ms intervals. Format validation is strict—ensure values match regex `/[\d.]+/` with suffix attached.
 
-### Stats Counter (script.js:101-135)
-The counter animation parses text content to detect format (currency with $M, percentage %, or count with +). Ensure stat values maintain this format when updating.
+**Timeline Layout** (styles.css:476-482): Alternates left/right via `direction: rtl` on even items. Maintains visual balance; don't remove this CSS rule.
 
-### Timeline Alternation (styles.css:476-482)
-The experience timeline alternates left/right using CSS `direction: rtl` on even items. This creates the classic alternating timeline look. Maintain this pattern when adding new experiences.
+**Active Nav Highlighting** (script.js:135-160): Uses 200px scroll offset threshold. Adds `active` class to current link dynamically. Links update as user scrolls.
 
-### Active Nav Link (script.js:135-160)
-Detects current section based on scroll position with 200px offset. Links update dynamically. The active state adds `active` class which triggers the underline (defined in CSS but not currently visible—could be styled further).
+**Scroll Animations** (script.js:22-43): IntersectionObserver with threshold 0.1 (triggers when 10% visible). **Critical**: `observer.unobserve()` prevents re-polling after animation fires. Don't remove—performance depends on it. Elements fade-in once, not on every scroll.
 
-### IntersectionObserver Cleanup (script.js:27-43)
-The scroll animations use IntersectionObserver with automatic cleanup via `observer.unobserve()` after each element animates in. This is critical for performance:
-- **Why it matters**: Without cleanup, the observer would keep polling all elements, wasting CPU cycles
-- **How it works**: Each element fades in once, then gets unwatched — subsequent scrolls don't re-trigger animations
-- **Modifying it**: If you want elements to animate on every scroll (not recommended), remove the `observer.unobserve()` call but expect performance impact
-- **Threshold of 0.1**: Elements animate when 10% of their area is visible; adjust `threshold: 0.1` in observerOptions to change this behavior
+**Parallax Effect** (script.js:164-180): GPU-accelerated via `transform: translateY()`. Multiply factor controls intensity. Subtle effect is intentional (aggressive parallax causes motion sickness).
 
-### Parallax Effect (script.js:164-180)
-The hero section includes a subtle parallax effect on the gradient circle background element. It uses `requestAnimationFrame` for smooth 60fps updates:
-- **Performance**: Uses `transform: translateY()` (GPU-accelerated) not `top/position` properties
-- **Customization**: Multiply factor in line ~172 controls intensity (higher = more dramatic parallax)
-- **Why not more visible**: Subtle parallax is professional; aggressive parallax can cause motion sickness
+**Job-Search alignment** (when customizing): Review `/home/wayne/AI-Projects/Job-Search/` resumes first. Extract 4 strongest stats, 6 relevant achievements, reorder expertise to match job description keywords.
 
-## Known Limitations
+## Known Limitations & Troubleshooting
 
-- **No JavaScript bundling/minification**: All JS runs in a single file without tree-shaking. Good for small sites, but keep script.js under 10KB
-- **No offline fonts**: Google Fonts requires internet connection; site gracefully degrades to system fonts but loses design polish
-- **No form backend without Formspree**: Contact form submission requires Formspree service (requires internet, not suitable for fully offline use)
-- **No dark mode toggle**: CSS variables are set at build time in `:root`. Adding dark mode would require JavaScript to swap themes dynamically
-- **No real-time notifications**: No build process means no asset versioning. Users must hard-refresh (Ctrl+Shift+R) to see CSS/JS changes
-- **Mobile menu not implemented**: Navigation is always visible (hamburger menu would need additional JS). Works fine on mobile but takes vertical space
-- **Stats counter limited to 4 visible cards**: Responsive design limits to 2x2 grid on tablet; adding more stats requires layout redesign
+**Limitations**:
+- No bundling/minification (single script.js file; keep under 10KB)
+- Google Fonts requires internet (gracefully degrades to system fonts)
+- Formspree contact form requires internet; not suitable for fully offline use
+- No dark mode toggle (would require runtime CSS swapping)
+- No asset versioning — users must hard-refresh (Ctrl+Shift+R) for CSS/JS changes
+- Mobile navigation always visible (hamburger menu would need extra JS)
+- Stats counter limited to 4 visible cards (responsive grid constraint)
 
-## Troubleshooting
-
-### Google Fonts Not Loading
-- **Check internet connection**: Fonts are loaded from fonts.googleapis.com (requires HTTPS or localhost)
-- **Fallback fonts**: If Google Fonts fails, system defaults to serif/sans-serif (acceptable but less polished)
-- **Test offline**: Run locally without internet — fonts will not load, but site remains functional
-- **Self-host fonts**: Download Inter and Outfit fonts and replace links in index.html:10-12 for offline version
-
-### Animations Not Triggering
-- **Check IntersectionObserver support**: Supported in all modern browsers (IE11+ with polyfill)
-- **Check scroll position**: Animations fire when elements enter viewport (not when page first loads)
-- **Disable for testing**: Set opacity to 1 in styles.css:210 to verify animations aren't blocking visibility
-
-### Stats Counter Not Animating
-- **Check format**: Counter animates values with $M (millions), $B (billions), % (percent), or + (count) suffix
-- **Example formats**:
-  - ✅ `$1.4B` (revenue in billions)
-  - ✅ `28+` (count)
-  - ✅ `200%` (percentage)
-  - ✅ `10+` (year count)
-  - ❌ `1.4B` (missing $)
-  - ❌ `28 years` (text suffix breaks parser)
-
-### Responsive Design Issues
-- **Test breakpoints**: Use DevTools device toolbar at 480px, 768px, 1440px
-- **Check media queries**: Mobile-first breakpoints in styles.css:724-819
-- **Test on real devices**: iPhone, iPad, Android phones may render differently than DevTools simulation
-- **Clear cache**: Hard refresh (Ctrl+Shift+R / Cmd+Shift+R) to bypass browser cache
-
-### Browser Compatibility
-- **Supported**: Chrome, Firefox, Safari, Edge (all modern versions)
-- **Not supported**: IE11 and older (ES6+ JavaScript not compatible)
-- **Graceful degradation**: If JavaScript fails, basic structure still visible
+**Troubleshooting**:
+- **Animations not firing**: IntersectionObserver requires scroll to trigger (not on page load). Test in DevTools device toolbar. Supported in all modern browsers (IE11+ with polyfill).
+- **Stats counter not animating**: Check format strictness — must be `$1.4B`, `28+`, `200%`, etc. Missing $ or text suffix breaks parser.
+- **Google Fonts not loading**: Requires HTTPS or localhost. Falls back to system fonts (acceptable). For offline: download Inter/Outfit and update index.html:10-12.
+- **Responsive issues**: Test at 480px, 768px, 1440px (DevTools device toolbar). Mobile-first CSS in styles.css:724-819. Test on real devices if possible.
+- **Browser compatibility**: Chrome, Firefox, Safari, Edge (ES6+ required). IE11 not supported. JS failures don't break HTML structure.
 
 ## Deployment
 
-### Quick Deploy Options
+**Any static host works** (GitHub Pages, Netlify, Vercel): just upload all files. No env vars, no build step, no secrets. HTTPS required for Google Fonts.
 
-**Any static hosting works** (GitHub Pages, Netlify, Vercel, etc.) — just upload all files as-is:
+**GitHub Pages (current setup)**:
+- `CNAME` file points to `waynecorrea.com`
+- DNS: A records at registrar point to GitHub servers (185.199.108.153, etc.)
+- Deploy: Push to `master` branch → auto-deploys in ~1 minute
+- Settings → Pages must be set to deploy from `master` branch
+- HTTPS auto-provisioned
 
-- No environment variables or secrets needed (Formspree form ID is public)
-- No build step required
-- Works offline except for Google Fonts and Formspree CDN
-- All modern browsers supported (uses ES6+ JavaScript features)
-
-### GitHub Pages (waynecorrea.com)
-
-The `CNAME` file is configured for GitHub Pages with custom domain:
-
-1. **Custom domain setup**: `CNAME` file points to `waynecorrea.com`
-2. **DNS configuration**: Domain registrar must have A records pointing to GitHub's servers (185.199.108.153, etc.)
-3. **HTTPS**: GitHub Pages automatically provisions SSL certificate (required for Google Fonts)
-4. **Deployment**: Push changes to `master` branch → GitHub Pages auto-deploys in ~1 minute
-5. **Branch requirement**: Ensure GitHub Pages is set to deploy from `master` branch (check repo Settings → Pages)
-
-### Netlify/Vercel (Alternative)
-
-If switching away from GitHub Pages:
-1. Delete the `CNAME` file (GitHub Pages-specific)
-2. Connect repo to Netlify/Vercel and select deploy branch
-3. No configuration needed — they auto-detect static HTML
-4. Environment: These services also provide HTTPS automatically
+**Switching to Netlify/Vercel**: Delete `CNAME` file (GitHub-specific), connect repo, select deploy branch. They auto-detect static HTML and provision HTTPS.

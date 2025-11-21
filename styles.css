@@ -37,6 +37,7 @@ body {
 
 .container {
     width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 40px;
     box-sizing: border-box;
@@ -77,6 +78,7 @@ body {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     letter-spacing: -1px;
+    display: none;
 }
 
 .nav-menu {
@@ -155,12 +157,23 @@ body {
     align-items: center;
 }
 
+.hero-name {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
 .hero-title {
     font-size: 3.5rem;
     font-weight: 800;
     line-height: 1.2;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     font-family: 'Outfit', sans-serif;
+    color: var(--text-dark);
 }
 
 .gradient-text {
@@ -173,17 +186,20 @@ body {
 .hero-subtitle {
     font-size: 1.25rem;
     color: var(--text-light);
-    margin-bottom: 2rem;
-    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+    max-width: 850px;
 }
 
 .hero-stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
     width: 100%;
-    max-width: 900px;
+    max-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .stat-card {
@@ -231,16 +247,17 @@ body {
    ===================================================== */
 
 .btn {
-    padding: 12px 28px;
+    padding: 14px 32px;
     border: none;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
     text-align: center;
+    white-space: nowrap;
 }
 
 .btn-primary {
@@ -342,6 +359,78 @@ section {
 }
 
 .highlight-box p {
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+/* =====================================================
+   CAREER PROGRESSION SECTION
+   ===================================================== */
+
+.career-progression {
+    background: white;
+    padding: 80px 40px;
+}
+
+.progression-phases {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.phase {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: #f8fafc;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.phase:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateX(4px);
+}
+
+.phase-marker {
+    font-size: 2rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.phase-content {
+    flex: 1;
+}
+
+.phase-content h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.phase-content p {
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.vision-statement {
+    background: linear-gradient(135deg, #f8fafc 0%, #eef4ff 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.vision-statement h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.vision-statement p {
     color: var(--text-light);
     line-height: 1.8;
 }
@@ -665,6 +754,21 @@ section {
     margin-bottom: 1rem;
 }
 
+.timeline-context {
+    background: #eef4ff;
+    padding: 0.75rem 1rem;
+    border-left: 3px solid var(--primary-color);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.timeline-context strong {
+    color: var(--primary-color);
+}
+
 .timeline-content ul {
     list-style: none;
     padding: 0;
@@ -811,17 +915,30 @@ section {
         font-size: 0.9rem;
     }
 
+    .hero-name {
+        font-size: 1.25rem;
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+    }
+
     .hero-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
     }
 
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: 1.05rem;
+        margin-bottom: 2rem;
     }
 
     .hero-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        padding: 1.25rem 1rem;
     }
 
     .hero-decoration {
@@ -839,6 +956,20 @@ section {
     .about-content {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+
+    .career-progression {
+        padding: 40px 40px;
+    }
+
+    .phase {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    .phase-marker {
+        font-size: 1.5rem;
     }
 
     .about-highlight {
@@ -877,16 +1008,47 @@ section {
 }
 
 @media (max-width: 480px) {
+    .hero-name {
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.3rem;
+    }
+
     .hero-title {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
     }
 
     .stat-card {
-        padding: 1rem;
+        padding: 1rem 0.75rem;
     }
 
     .stat-number {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    .cta-buttons {
+        gap: 0.75rem;
+    }
+
+    .cta-buttons .btn {
+        padding: 12px 24px;
+        font-size: 0.95rem;
     }
 
     .achievement-grid {
