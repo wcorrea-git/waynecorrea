@@ -1,12 +1,10 @@
-<!-- FILE: index.html -->
+<!-- FILE: journal.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Wayne Correa - Cloud Infrastructure Product Leader with 28+ years in product management and over $1.4B+ in combined revenue delivered.">
-    <meta name="keywords" content="Product Manager, Cloud Infrastructure, Networking, Cloud, Leadership">
-    <title>Wayne Correa | About Me</title>
+    <title>My Journal | Wayne Correa</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,13 +27,12 @@
                         <i data-feather="menu"></i>
                     </button>
                     <ul class="nav-menu">
-                        <li><a href="index.html" class="nav-link active">About Me</a></li>
                         <li class="dropdown">
-                            <a href="journal.html" class="nav-link" aria-haspopup="true">My Journal <i data-feather="chevron-down"></i></a>
+                            <a href="index.html" class="nav-link active" aria-haspopup="true">My Journal <i data-feather="chevron-down"></i></a>
                             <ul class="dropdown-menu">
                                 <!-- Build-time injected links to posts -->
                                 <li><a href="post.html">The Augmented Product Manager</a></li>
-                                <li><a href="#">Journal Post 2</a></li>
+                                <li><a href="#">Coming soon</a></li>
                                 <!-- End of injected links -->
                             </ul>
                         </li>
@@ -47,62 +44,72 @@
                                 <!-- End of injected links -->
                             </ul>
                         </li>
+                        <li><a href="about.html" class="nav-link">About Me</a></li>
                     </ul>
+                    <div class="settings-dropdown">
+                        <button class="settings-toggle" aria-label="Settings">
+                            <i data-feather="settings"></i>
+                        </button>
+                        <div class="settings-menu">
+                            <div class="settings-section">
+                                <label for="theme-select">Theme</label>
+                                <select id="theme-select">
+                                    <option value="light">Light</option>
+                                    <option value="dark">Dark</option>
+                                </select>
+                            </div>
+                            <div class="settings-section">
+                                <label for="lang-select">Language</label>
+                                <select id="lang-select">
+                                    <option value="en">English</option>
+                                    <option value="es">Spanish</option>
+                                    <option value="fr">French</option>
+                                    <option value="zh">Chinese</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </nav>
             </div>
         </div>
     </header>
 
-    <main>
-        <!-- Hero Section (from original index.html) -->
-        <section class="hero">
-            <div class="hero-content">
-                <h2 class="hero-title">Cloud Infrastructure <span class="gradient-text">Product Leader</span></h2>
-                <p class="hero-subtitle">37 years scaling enterprise, cloud and networking solutions | $1.4B+ in combined revenue | Principal PM at Equinix</p>
-                <div class="hero-stats">
-                    <div class="stat-card">
-                        <div class="stat-number">37+</div>
-                        <div class="stat-label">Years in Product</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">$1.4B</div>
-                        <div class="stat-label">in Combined Revenue</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">32.7%</div>
-                        <div class="stat-label">YoY Growth (Peak)</div>
-                    </div>
+    <main class="container page-main">
+        <h2 class="section-title">My Journal</h2>
+        <div class="journal-list">
+            <!--
+                Build-time process would loop through Markdown files in /posts
+                and generate an <article> for each, ordered by date.
+            -->
+
+            <!-- Example Post 1 -->
+            <article class="journal-post">
+                <header class="post-header">
+                    <h3 class="post-title"><a href="post.html">The Augmented Product Manager</a></h3>
+                    <p class="post-meta">Published on <time datetime="2026-01-01">January 1, 2026</time></p>
+                </header>
+                <div class="post-excerpt">
+                    <p>Recovering from shoulder surgery with one arm in a sling, I was already feeling sidelined when a friend hit me with a concrete challenge: Can we visualize data from PeeringDB.com in a way that reveals how companies actually interconnect, without days of manual work? What started as a small “what-if” experiment using AI to explore that question quickly evolved into cloudinfrastructure.org, a working solution that maps interconnection patterns across networks, facilities, and cloud on-ramps...</p>
                 </div>
-            </div>
-            <div class="hero-decoration">
-                <div class="gradient-circle"></div>
-            </div>
-        </section>
+                <a href="post.html" class="btn btn-secondary">Read More</a>
+            </article>
 
-        <!-- About Section (from original index.html) -->
-        <section class="about" id="about">
-            <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p class="lead">Cloud Infrastructure Product Leader driving $1B+ in revenue with transformative solutions at Equinix, IBM, and Huawei that drive enterprise digital transformation.</p>
-                        <p>With a proven track record at Equinix and IBM, I've architected enterprise networking solutions, launched disruptive products, and led global teams across 3 continents. My expertise spans hybrid and multi-cloud networking and architectures, AI-driven product strategy, and enterprise sales—delivering measurable business impact at scale.</p>
-                        <p>Over 37 years, I've learned that great products start with deep customer understanding. My journey began in 1988 providing field technical support for banking systems—learning how mission-critical infrastructure must perform under pressure. That experience shaped how I approach every product decision: from designing IBM ServicePac (the company's first bundled services offering) to launching Equinix's Fabric Cloud Router ($1M+ ARR in year one, 22% monthly growth). I've led teams through transformational change—implementing new product development methodologies at Huawei across US, Europe, and China operations, and guiding Equinix's strategic shift from infrastructure company to software-native platform.</p>
-                        <p>Currently driving Cloud Networking innovation at Equinix as Principal Product Manager and recently completed an AI product development certification from MIT to shape next-generation cloud services.</p>
-                    </div>
-                    <div class="about-highlight">
-                        <div class="highlight-box">
-                            <h3>What Drives Me</h3>
-                            <p><strong>Customer obsession:</strong> Every product starts with deep customer understanding. <strong>Team building:</strong> Mentored dozens of product managers who progressed to leadership roles. <strong>Strategic thinking:</strong> Positioned organizations early for emerging opportunities. <strong>Execution excellence:</strong> Consistent delivery of growth targets at scale.</p>
-                        </div>
-                    </div>
+            <hr class="post-separator">
+
+            <!-- Example Post 2 (Placeholder) -->
+            <article class="journal-post">
+                <header class="post-header">
+                    <h3 class="post-title"><a href="#">Coming soon</a></h3>
+                    <p class="post-meta">Published on <time datetime="2025-12-15">December 15, 2025</time></p>
+                </header>
+                <div class="post-excerpt">
+                    <p>This is a placeholder for another journal entry. The content would be rendered here from a Markdown file, providing a brief excerpt to entice the reader.</p>
                 </div>
-            </div>
-        </section>
+                <a href="#" class="btn btn-secondary">Read More</a>
+            </article>
 
-        <!-- Other sections from original index.html can be included here -->
-        <!-- For brevity, I'm omitting Career, Achievements, Expertise, Experience -->
-
+            <!-- End of dynamic content -->
+        </div>
     </main>
 
     <footer class="site-footer-main">

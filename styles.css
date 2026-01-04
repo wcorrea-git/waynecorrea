@@ -711,4 +711,147 @@ section {
         text-align: center;
         gap: 1.5rem;
     }
+}/* =====================================================
+   NEW STYLES (APPENDED)
+   ===================================================== */
+
+:root {
+    --header-bg: #FFFFFF;
+    --footer-bg: #1D2A39;
+}
+
+body.dark-mode {
+    --primary-color: #4299E1; /* Brighter Blue for dark mode */
+    --secondary-color: #A0AEC0;
+    --light-bg: #2D3748;
+    --main-bg: #1A202C;
+    --text-primary: #F7FAFC;
+    --text-secondary: #E2E8F0;
+    --border-color: #4A5568;
+    --header-bg: #2D3748;
+    --footer-bg: #171923;
+}
+
+body {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.site-header {
+    background: var(--header-bg);
+    transition: background-color 0.3s;
+}
+
+.header-identity .header-name {
+    font-size: 2rem; /* Increased font size */
+    font-weight: 800; /* Bolder */
+    letter-spacing: -1px;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Settings Dropdown */
+.settings-dropdown {
+    position: relative;
+}
+
+.settings-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    padding: 0.5rem;
+}
+
+.settings-toggle:hover {
+    color: var(--primary-color);
+}
+
+.settings-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--light-bg);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    padding: 1rem;
+    width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.settings-dropdown.is-open .settings-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.settings-section {
+    margin-bottom: 1rem;
+}
+
+.settings-section:last-child {
+    margin-bottom: 0;
+}
+
+.settings-section label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.settings-section select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--light-bg);
+    color: var(--text-primary);
+}
+
+.site-footer-main {
+    background: var(--footer-bg);
+    transition: background-color 0.3s;
+}
+
+body.dark-mode .footer-contact h3,
+body.dark-mode .footer-links a {
+    color: var(--text-primary);
+}
+
+/* Adjustments for dark mode */
+body.dark-mode .achievement-card,
+body.dark-mode .journal-post,
+body.dark-mode .post-full,
+body.dark-mode .project-card-full,
+body.dark-mode .stat-card,
+body.dark-mode .about-highlight .highlight-box,
+body.dark-mode .phase,
+body.dark-mode .vision-statement,
+body.dark-mode .expertise-category {
+    background-color: var(--light-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .btn-secondary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+body.dark-mode .btn-secondary:hover {
+    background: var(--primary-color);
+    color: var(--light-bg);
+}
+
+body.dark-mode .about,
+body.dark-mode .career-progression,
+body.dark-mode .experience {
+    background-color: #2D3748; /* A slighly different dark color */
 }
