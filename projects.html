@@ -1,0 +1,115 @@
+<!-- FILE: projects.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Wayne Correa</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-identity">
+                    <h1 class="header-name">Wayne Correa</h1>
+                    <div class="header-contact-links">
+                        <a href="mailto:email@waynecorrea.com"><i data-feather="mail"></i> email@waynecorrea.com</a>
+                        <a href="https://www.linkedin.com/in/waynecorrea" target="_blank"><i data-feather="linkedin"></i> LinkedIn</a>
+                    </div>
+                </div>
+                <nav class="main-nav">
+                    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                        <i data-feather="menu"></i>
+                    </button>
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link">About Me</a></li>
+                        <li class="dropdown">
+                            <a href="journal.html" class="nav-link" aria-haspopup="true">My Journal <i data-feather="chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <!-- Build-time injected links to posts -->
+                                <li><a href="post.html">The Augmented Product Manager</a></li>
+                                <li><a href="#">Journal Post 2</a></li>
+                                <!-- End of injected links -->
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="projects.html" class="nav-link active" aria-haspopup="true">Projects <i data-feather="chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <!-- Build-time injected links to projects -->
+                                <li><a href="projects.html#project-peeringdb">Cloud Infrastructure Insights</a></li>
+                                <!-- End of injected links -->
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container page-main">
+        <h2 class="section-title">My Projects</h2>
+        <div class="project-list">
+            <!-- Project 1: PeeringDB -->
+            <section class="project-card-full" id="project-peeringdb">
+                <div class="project-content">
+                    <h3 class="project-title">Cloud Infrastructure Insights from PeeringDB</h3>
+                    <div class="project-description">
+                        <p>This project provides a tool to visualize and analyze interconnection data from PeeringDB, the source of truth for internet infrastructure. While PeeringDB is an excellent directory, it is not optimized for strategic analysis. This tool addresses that gap by answering complex questions about how networks, data centers, and cloud on-ramps connect globally.</p>
+                        <p>It transforms raw, record-based data into an actionable map of the internet's physical topology. Users can explore which data centers are critical interconnection hubs, compare the private interconnect footprints of different providers, and identify strategic opportunities for network expansion. The project was born from a real-world need to move beyond manual, time-consuming data analysis and now serves as a public resource for infrastructure planners and network strategists.</p>
+                    </div>
+                    <ul class="project-details">
+                        <li><strong>Date:</strong> 2025-2026</li>
+                        <li><strong>Tools/Code:</strong> Python, AI-assisted data normalization, HTML, CSS, JavaScript</li>
+                        <li><strong>Website:</strong> <a href="http://cloudinfrastructure.org" target="_blank">cloudinfrastructure.org</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!--
+                Example markup for adding another project.
+                A build process could generate these from a data file (e.g., YAML, JSON).
+            -->
+            <section class="project-card-full" id="project-example">
+                <div class="project-content">
+                    <h3 class="project-title">Another Future Project</h3>
+                    <div class="project-description">
+                        <p>This is a placeholder for a future project. The structure is identical to the one above, allowing for a consistent and clean presentation of your work. Each project can have a detailed description and a list of key facts like the date, technologies used, and a link to the live version or source code.</p>
+                    </div>
+                    <ul class="project-details">
+                        <li><strong>Date:</strong> TBD</li>
+                        <li><strong>Tools/Code:</strong> To be determined</li>
+                        <li><strong>Website:</strong> <a href="#" target="_blank">Not yet available</a></li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer-main">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-contact">
+                    <h3>Wayne Correa</h3>
+                    <a href="mailto:email@waynecorrea.com">email@waynecorrea.com</a>
+                </div>
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/waynecorrea" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2026 Wayne Correa. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        feather.replace()
+    </script>
+</body>
+</html>
