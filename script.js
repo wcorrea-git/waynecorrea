@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const dropdowns = document.querySelectorAll('.main-nav .dropdown');
+    const settingsToggle = document.querySelector('.settings-toggle');
+    const settingsMenu = document.querySelector('.settings-menu');
+    const themeSelect = document.getElementById('theme-select');
 
     // Toggle mobile menu
     if (navToggle) {
@@ -32,27 +35,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         });
-
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', function (e) {
-            if (!e.target.closest('.main-nav')) {
-                dropdowns.forEach(function (dropdown) {
-                    dropdown.classList.remove('is-open');
-                });
-            }
-        });
     }
 
     // Feather icons
     feather.replace();
-});
-// Settings Dropdown, Theme Switcher, and Language Switcher
-document.addEventListener('DOMContentLoaded', function () {
-    const settingsToggle = document.querySelector('.settings-toggle');
-    const settingsMenu = document.querySelector('.settings-menu');
-    const themeSelect = document.getElementById('theme-select');
-    const langSelect = document.getElementById('lang-select');
 
+    // Settings Dropdown & Theme Switcher
     if (settingsToggle) {
         settingsToggle.addEventListener('click', function (e) {
             e.stopPropagation();
@@ -64,35 +52,29 @@ document.addEventListener('DOMContentLoaded', function () {
     if (themeSelect) {
         // Check for saved theme in localStorage
         const currentTheme = localStorage.getItem('theme');
-        if (currentTheme) {
-            document.body.classList.remove('light-mode', 'dark-mode');
-            if (currentTheme !== 'light') {
-                document.body.classList.add(currentTheme);
-            }
-            themeSelect.value = currentTheme;
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeSelect.value = 'dark';
         }
 
         themeSelect.addEventListener('change', function () {
-            const selectedTheme = themeSelect.value;
-            document.body.classList.remove('light-mode', 'dark-mode');
-            if (selectedTheme !== 'light') {
-                document.body.classList.add(selectedTheme);
+            if (this.value === 'dark') {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
             }
-            localStorage.setItem('theme', selectedTheme);
         });
     }
 
-    if (langSelect) {
-        langSelect.addEventListener('change', function () {
-            const selectedLang = langSelect.value;
-            // For now, we will just show an alert.
-            // A full implementation would require a more complex setup with a library like i18next.
-            alert('Language switched to: ' + selectedLang);
-        });
-    }
-
-    // Close settings dropdown when clicking outside
+    // Close dropdowns when clicking outside
     document.addEventListener('click', function (e) {
+        if (!e.target.closest('.main-nav')) {
+            dropdowns.forEach(function (dropdown) {
+                dropdown.classList.remove('is-open');
+            });
+        }
         const settingsDropdown = document.querySelector('.settings-dropdown');
         if (settingsDropdown && !settingsDropdown.contains(e.target)) {
             settingsDropdown.classList.remove('is-open');

@@ -45,7 +45,17 @@
                                 <!-- End of injected links -->
                             </ul>
                         </li>
-                        <li><a href="about.html" class="nav-link">About Me</a></li>
+                        <li class="dropdown">
+                            <a href="about.html" class="nav-link" aria-haspopup="true">About Me <i data-feather="chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="about.html#about">About</a></li>
+                                <li><a href="about.html#progression">Career</a></li>
+                                <li><a href="about.html#achievements">Impact</a></li>
+                                <li><a href="about.html#expertise">Expertise</a></li>
+                                <li><a href="about.html#experience">Experience</a></li>
+                                <li><a href="about.html#contact">Contact</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <div class="settings-dropdown">
                         <button class="settings-toggle" aria-label="Settings">
@@ -57,15 +67,6 @@
                                 <select id="theme-select">
                                     <option value="light">Light</option>
                                     <option value="dark">Dark</option>
-                                </select>
-                            </div>
-                            <div class="settings-section">
-                                <label for="lang-select">Language</label>
-                                <select id="lang-select">
-                                    <option value="en">English</option>
-                                    <option value="es">Spanish</option>
-                                    <option value="fr">French</option>
-                                    <option value="zh">Chinese</option>
                                 </select>
                             </div>
                         </div>
@@ -82,8 +83,116 @@
                 <p class="post-meta">Published on <time datetime="2026-01-01">January 1, 2026</time> by Wayne Correa</p>
             </header>
 
-            <div id="post-full-content" class="post-full-content">
-                <!-- Content will be loaded here by JavaScript -->
+            <div class="post-full-content">
+                <p>Recovering from shoulder surgery with one arm in a sling, I was already feeling sidelined when a friend hit me with a concrete challenge: &nbsp;</p>
+                <p>Can we visualize data from PeeringDB.com in a way that reveals how companies actually interconnect, without days of manual work?</p>
+                <p>What started as a small “what-if” experiment using AI to explore that question quickly evolved into <a href="https://cloudinfrastructure.org">cloudinfrastructure.org</a>, a working solution that maps interconnection patterns across networks, facilities, and cloud on-ramps. This was not a thought exercise; it is a real example of using AI as a tool to move from constraint to a shipped solution in days, not months.</p>
+                <p>For Product Managers, especially in cloud networking, this story is a blueprint for turning vague, complex infrastructure questions into concrete tools that your customers can actually use.</p>
+                <h2>PeeringDB: Powerful, but Hard to Interrogate</h2>
+                <p><img src="/images/peeringdb.png" alt="Image Description"></p>
+                <p>If you work in networking, PeeringDB is already familiar. It is the community-driven registry of networks, facilities, Internet Exchange Points (IXPs), and private interconnection points: a shared source of truth for how the internet physically fits together.</p>
+                <p>In practice, it functions like a directory for internet infrastructure, a description of who is present where, and how networks meet at IBX sites and other facilities.</p>
+                <p>However, PeeringDB is optimized for record lookup, not for answering cross-cutting, strategic questions. It is a rich library with a limited card catalog: you can easily look up a single network or facility, but it is painful to ask questions like:</p>
+                <ul>
+                    <li>Across these two specific networks, where do they privately interconnect?</li>
+                    <li>Which facilities emerge as critical hubs for private, network-to-network connectivity?</li>
+                    <li>How does a particular provider’s private interconnect footprint compare across regions?</li>
+                </ul>
+                <p>A friend framed the problem very specifically: “Which data centers are the most critical hubs for private interconnection between networks X and Y?”</p>
+                <p>Answering that with manual exports and spreadsheets (which I am very comfortable with and had previously used for years to answer these types of questions), would take days. With one arm immobilized, even that brute-force option was off the table, which turned into a forcing function to find a higher-leverage approach.</p>
+                <h2>From Constraint to AI-First Approach</h2>
+                <p>The work did not begin with “build me a website.” It began with the same questions any Product Manager should ask: What is the user’s actual question? What decisions depend on the answer? What data exists, and how hard is it to use? The difference in this case was that my primary assistant was an AI tool, not another teammate.</p>
+                <h3>Step 1: Understand and Normalize the Data</h3>
+                <p>The first prompts focused on understanding the PeeringDB API and its structure. Instead of reading every page of documentation manually, I asked the AI to explain all of the endpoints in the PeeringDB API and generate Python examples to pull those resources.</p>
+                <p>This yielded, a clear view of what data was available for me to use in my analysis and how it was structured in the database:</p>
+                <ul>
+                    <li>A concise explanation of how networks, IXPs, and facilities relate in the API.</li>
+                    <li>Immediately executable Python code to fetch and store data.</li>
+                    <li>A faster way to iterate on questions like “What other endpoints do we need for private interconnect visibility?"</li>
+                </ul>
+                <p>Next, I used the AI to normalize data. For example, aligning naming conventions (such as the many variations of “AT&amp;T”) across records is tedious and error-prone by hand. By delegating name normalization and consistency checks to AI-assisted scripts, it became easier to reason about “one company” across many entries.</p>
+                <h3>Step 2: Structure the Model Around the Question</h3>
+                <p>Once the data model was clearer, the next task was not “write more code,” but “design the right representation of the problem.”</p>
+                <p>Prompts like “Propose a data model linking a company, a data center, and a private interconnect so it’s easy to visualize” turned the AI into a sounding board for architecture decisions. The output was not perfect, but it generated schema options quickly, which I could then pressure-test against the core question:</p>
+                <ul>
+                    <li>Can this model tell me where networks X and Y privately connect?</li>
+                    <li>Can I rank facilities by the density or importance of those private connections?</li>
+                    <li>Can I extend this model later for cloud on-ramps or additional networks?</li>
+                </ul>
+                <p>The AI generated draft schemas and relationships; my job as the Product Manager was to decide which ones were realistic, maintainable, and aligned with the actual user questions.</p>
+                <h3>Step 3: Delegate Boilerplate Code, Own the Logic</h3>
+                <p>With a reasonable schema in mind, the prompts shifted from exploration to targeted execution:</p>
+                <ul>
+                    <li>“Using this schema, write Python code to fetch PeeringDB data and persist it.”</li>
+                    <li>“Generate code to transform raw responses into normalized tables keyed by network and facility IDs.”</li>
+                    <li>“Create a simple HTML table listing networks and the IXPs where they privately interconnect.”</li>
+                </ul>
+                <p>The AI handled:</p>
+                <ul>
+                    <li>HTTP calls and error handling.</li>
+                    <li>Parsing responses into structured objects.</li>
+                    <li>Boilerplate database and HTML generation.</li>
+                </ul>
+                <p>This was not blind copy-paste. Each generated snippet went through a tight loop: run, inspect, validate, refine the prompt, and iterate. The key shift was that AI took on the execution-heavy work, while I stayed focused on:</p>
+                <ul>
+                    <li>Is this answering the right question?</li>
+                    <li>Are the edge cases covered?</li>
+                    <li>Does this representation actually help a network engineer make a better decision?</li>
+                </ul>
+                <p>Within minutes, the first tangible artifact appeared: a basic HTML table showing networks and their shared IXPs, including private interconnections. It was far from polished, but it made the insight visible and gave a concrete starting point for a solution.</p>
+                <h2>From Prototype to cloudinfrastructure.org</h2>
+                <p>The turning point was realizing that the answer to one friend’s question could scale into a reusable tool. If one team needed a fast way to reason about private interconnections between networks, others in the cloud and interconnection ecosystem likely did too.</p>
+                <p>Evolving the prototype into <a href="https://cloudinfrastructure.org">cloudinfrastructure.org</a> followed a familiar solution loop:</p>
+                <ul>
+                    <li>Validate the pattern: Are similar questions coming up in conversations with cloud providers, carriers, or platform teams?</li>
+                    <li>Generalize the use case: Instead of “networks X and Y,” design the system to compare any pair of networks or map the footprint of a single network across facilities.</li>
+                    <li>Harden the pipeline: Move from quick scripts to repeatable ingestion and transformation jobs, so the data stays current.</li>
+                    <li>Improve the UX: Replace a raw HTML table with a navigable site that surfaces key insights first and lets users drill down.</li>
+                </ul>
+                <p>Throughout this evolution, one principle stayed constant: AI is the <strong>how</strong>, not the <strong>what</strong> or <strong>why</strong>.</p>
+                <ul>
+                    <li>AI generated code, transformed data, and suggested schemas.</li>
+                    <li>The solution decisions, what problem to solve, which workflows to support, which metrics matter, came from domain expertise in cloud networking and Product management.</li>
+                </ul>
+                <p>This distinction matters. Without a clear solution vision, AI just makes it easier to ship the wrong thing faster. With a clear solution vision, AI collapses the distance between an idea, a prototype, and a running service.</p>
+                <h2>Applying This Pattern to Your Solution Work</h2>
+                <p>This approach is not limited to PeeringDB or interconnection data. Any Product Manager working with complex, structured datasets, cloud usage, telemetry, pricing, reference data, can adopt the same pattern to move faster and answer harder questions.</p>
+                <p>Here is a practical way to start using AI as a tool in your own workflow, especially if you are in cloud networking or infrastructure:</p>
+                <h3>Low-Risk, High-Learning Experiments</h3>
+                <ol>
+                    <li><strong>Automate something you already understand</strong> &nbsp;<br> &nbsp; Pick one tedious but familiar task: a recurring report, a weekly data pull, or a status update. Use AI to write the script, SQL, or template, and then verify every step. The goal is not novelty; it is building trust in the interaction pattern.</li>
+                    <li><strong>Use AI as a research accelerator, not a search engine</strong> &nbsp;<br> &nbsp; Give it a focused brief: “Summarize the key differences between AWS, Azure, GCP, and OCI private interconnect models”, and ask it to produce a structured output you can refine: comparison tables, pros and cons, or risks.</li>
+                    <li><strong>Reflect on a recent constraint</strong> &nbsp;<br> &nbsp; Think about a time you said, “I do not have time to dig into this dataset properly,” or “Engineering is too busy for a prototype right now.” Rewrite that scenario as a prompt: “If I had an AI tool with basic coding skills, how would I tackle this differently?”</li>
+                </ol>
+                <h3>Move From Experiments to Assets</h3>
+                <ol>
+                    <li><strong>Integrate AI into daily discovery and planning</strong> &nbsp;<br> &nbsp; Use it to draft discovery questions, summarize customer interviews, or generate alternative problem framings before you walk into a design or architecture review.</li>
+                    <li><strong>Ship one small, self-serve tool</strong> &nbsp;<br> &nbsp; Pick a narrow but valuable use case: a script that maps cloud interconnect options for a specific workload pattern, or a dashboard that surfaces latency-sensitive paths between regions. Use AI to build the first version and make it available internally, even if it is rough. The goal is to move from “one-off analysis” to “reusable insight.”</li>
+                    <li><strong>Measure impact intentionally</strong> &nbsp;<br> &nbsp; Track three simple metrics:
+                        <ul>
+                            <li>Time saved on routine tasks.</li>
+                            <li>Number of ideas you can explore to a prototype.</li>
+                            <li>Subjective mental bandwidth: how often you stay focused on strategy instead of wrangling tools.[file:2]</li>
+                        </ul>
+                    </li>
+                </ol>
+                <p>Over time, these small practices compound. Instead of being the person who manually builds every report or artifact, you become the person who defines the questions, orchestrates the tools, and ships usable solutions faster.</p>
+                <h2>Looking Ahead: From Personal Story to Systematic Practice</h2>
+                <p>Building <a href="https://cloudinfrastructure.org">cloudinfrastructure.org</a> was a personal <strong>skill-building</strong> side project that I did while laid up after surgery. It showed me that AI can meaningfully augment a Product Manager’s ability to explore data, validate ideas, and ship usable tools, even under real constraints.</p>
+                <p>The broader lesson is that AI is most powerful when it is tightly coupled to <strong>domain expertise</strong> and a clear solution question, not when it is treated as a generic magic wand.</p>
+                <p>This post focused on one concrete journey: from a sling, to a data challenge, to a working interconnection tool. In the next part of this series, the lens will widen.</p>
+                <p>Building on what this experiment unlocked, I plan on continuing to explore additional, practical ways AI can improve the effectiveness of a Product Manager. I will widen the lens and in the next post I will focus on shifting from a single project to a systematic approach for using AI across the Discovery phase of the solution lifecycle:</p>
+                <ul>
+                    <li>Generating better, more testable hypotheses.</li>
+                    <li>Accelerating market and ecosystem research.</li>
+                    <li>Rapidly validating or invalidating ideas with data and lightweight prototypes.</li>
+                </ul>
+                <p>Until then, consider this a standing question: &nbsp;</p>
+                <ul>
+                    <li>Where in your current roadmap is there a messy, data-heavy problem that you have quietly accepted as “too painful” to tackle right now? That might be the best place to let an AI co-pilot earn its keep.</li>
+                    <li>If you have already used AI in your professional life, what was the first moment it shifted from “interesting demo” to “I cannot imagine working without this”? If you have not started yet, what specific risk or constraint is holding you back from experimenting?</li>
+                </ul>
+                <p>If you’re open to it, I’m interested in those moments and experiments from your own work. Your experiences and constraints can help guide where this series goes next and which real-world Product Management problems we should use AI to focus on.</p>
             </div>
         </article>
     </main>
@@ -105,26 +214,9 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="script.js"></script>
     <script>
         feather.replace();
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const postContent = document.getElementById('post-full-content');
-            // Fetch and render the Markdown file
-            fetch('posts/The Augmented PM - How a Sidelined Arm and a Data Challenge Created a New Tool.md')
-                .then(response => response.text())
-                .then(text => {
-                    // Remove front matter
-                    const markdown = text.replace(/---[\s\S]*?---/, '').trim();
-                    postContent.innerHTML = marked.parse(markdown);
-                })
-                .catch(error => {
-                    console.error('Error fetching post:', error);
-                    postContent.innerHTML = '<p>Error loading post content.</p>';
-                });
-        });
     </script>
 </body>
 </html>

@@ -44,7 +44,17 @@
                                 <!-- End of injected links -->
                             </ul>
                         </li>
-                        <li><a href="about.html" class="nav-link">About Me</a></li>
+                        <li class="dropdown">
+                            <a href="about.html" class="nav-link" aria-haspopup="true">About Me <i data-feather="chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="about.html#about">About</a></li>
+                                <li><a href="about.html#progression">Career</a></li>
+                                <li><a href="about.html#achievements">Impact</a></li>
+                                <li><a href="about.html#expertise">Expertise</a></li>
+                                <li><a href="about.html#experience">Experience</a></li>
+                                <li><a href="about.html#contact">Contact</a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <div class="settings-dropdown">
                         <button class="settings-toggle" aria-label="Settings">
@@ -56,15 +66,6 @@
                                 <select id="theme-select">
                                     <option value="light">Light</option>
                                     <option value="dark">Dark</option>
-                                </select>
-                            </div>
-                            <div class="settings-section">
-                                <label for="lang-select">Language</label>
-                                <select id="lang-select">
-                                    <option value="en">English</option>
-                                    <option value="es">Spanish</option>
-                                    <option value="fr">French</option>
-                                    <option value="zh">Chinese</option>
                                 </select>
                             </div>
                         </div>
@@ -93,23 +94,7 @@
                 </div>
             </section>
 
-            <!--
-                Example markup for adding another project.
-                A build process could generate these from a data file (e.g., YAML, JSON).
-            -->
-            <section class="project-card-full" id="project-example">
-                <div class="project-content">
-                    <h3 class="project-title">Another Future Project</h3>
-                    <div class="project-description">
-                        <p>This is a placeholder for a future project. The structure is identical to the one above, allowing for a consistent and clean presentation of your work. Each project can have a detailed description and a list of key facts like the date, technologies used, and a link to the live version or source code.</p>
-                    </div>
-                    <ul class="project-details">
-                        <li><strong>Date:</strong> TBD</li>
-                        <li><strong>Tools/Code:</strong> To be determined</li>
-                        <li><strong>Website:</strong> <a href="#" target="_blank">Not yet available</a></li>
-                    </ul>
-                </div>
-            </section>
+            
         </div>
     </main>
 

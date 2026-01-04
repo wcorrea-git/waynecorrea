@@ -855,3 +855,40 @@ body.dark-mode .career-progression,
 body.dark-mode .experience {
     background-color: #2D3748; /* A slighly different dark color */
 }
+
+body.dark-mode .site-footer-main {
+    color: var(--text-secondary);
+}
+
+body.dark-mode .footer-contact a {
+    color: var(--text-secondary);
+}
+
+body.dark-mode .footer-links a {
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .footer-links a:hover {
+    background: var(--primary-color);
+    color: var(--light-bg);
+    border-color: var(--primary-color);
+}
+body.dark-mode .site-footer-main {
+    color: var(--text-secondary);
+}
+
+body.dark-mode .footer-contact a {
+    color: var(--text-secondary);
+}
+
+body.dark-mode .footer-links a {
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .footer-links a:hover {
+    background: var(--primary-color);
+    color: var(--light-bg);
+    border-color: var(--primary-color);
+}
