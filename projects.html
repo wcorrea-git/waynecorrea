@@ -1,10 +1,10 @@
-<!-- FILE: journal.html -->
+<!-- FILE: projects.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Journal | Wayne Correa</title>
+    <title>Projects | Wayne Correa</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +28,7 @@
                     </button>
                     <ul class="nav-menu">
                         <li class="dropdown">
-                            <a href="index.html" class="nav-link active" aria-haspopup="true">My Journal <i data-feather="chevron-down"></i></a>
+                            <a href="index.html" class="nav-link" aria-haspopup="true">My Journal <i data-feather="chevron-down"></i></a>
                             <ul class="dropdown-menu">
                                 <!-- Build-time injected links to posts -->
                                 <li><a href="post.html">The Augmented Product Manager</a></li>
@@ -37,7 +37,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="projects.html" class="nav-link" aria-haspopup="true">Projects <i data-feather="chevron-down"></i></a>
+                            <a href="projects.html" class="nav-link active" aria-haspopup="true">Projects <i data-feather="chevron-down"></i></a>
                             <ul class="dropdown-menu">
                                 <!-- Build-time injected links to projects -->
                                 <li><a href="projects.html#project-peeringdb">Cloud Infrastructure Insights</a></li>
@@ -76,40 +76,25 @@
     </header>
 
     <main class="container page-main">
-        <h2 class="section-title">My Journal</h2>
-        <div class="journal-list">
-            <!--
-                Build-time process would loop through Markdown files in /posts
-                and generate an <article> for each, ordered by date.
-            -->
-
-            <!-- Example Post 1 -->
-            <article class="journal-post">
-                <header class="post-header">
-                    <h3 class="post-title"><a href="post.html">The Augmented Product Manager</a></h3>
-                    <p class="post-meta">Published on <time datetime="2026-01-01">January 1, 2026</time></p>
-                </header>
-                <div class="post-excerpt">
-                    <p>Recovering from shoulder surgery with one arm in a sling, I was already feeling sidelined when a friend hit me with a concrete challenge: Can we visualize data from PeeringDB.com in a way that reveals how companies actually interconnect, without days of manual work? What started as a small “what-if” experiment using AI to explore that question quickly evolved into cloudinfrastructure.org, a working solution that maps interconnection patterns across networks, facilities, and cloud on-ramps...</p>
+        <h2 class="section-title">My Projects</h2>
+        <div class="project-list">
+            <!-- Project 1: PeeringDB -->
+            <section class="project-card-full" id="project-peeringdb">
+                <div class="project-content">
+                    <h3 class="project-title">Cloud Infrastructure Insights from PeeringDB</h3>
+                    <div class="project-description">
+                        <p>This project provides a tool to visualize and analyze interconnection data from PeeringDB, the source of truth for internet infrastructure. While PeeringDB is an excellent directory, it is not optimized for strategic analysis. This tool addresses that gap by answering complex questions about how networks, data centers, and cloud on-ramps connect globally.</p>
+                        <p>It transforms raw, record-based data into an actionable map of the internet's physical topology. Users can explore which data centers are critical interconnection hubs, compare the private interconnect footprints of different providers, and identify strategic opportunities for network expansion. The project was born from a real-world need to move beyond manual, time-consuming data analysis and now serves as a public resource for infrastructure planners and network strategists.</p>
+                    </div>
+                    <ul class="project-details">
+                        <li><strong>Date:</strong> 2025-2026</li>
+                        <li><strong>Tools/Code:</strong> Python, AI-assisted data normalization, HTML, CSS, JavaScript</li>
+                        <li><strong>Website:</strong> <a href="http://cloudinfrastructure.org" target="_blank">cloudinfrastructure.org</a></li>
+                    </ul>
                 </div>
-                <a href="post.html" class="btn btn-secondary">Read More</a>
-            </article>
+            </section>
 
-            <hr class="post-separator">
-
-            <!-- Example Post 2 (Placeholder) -->
-            <article class="journal-post">
-                <header class="post-header">
-                    <h3 class="post-title"><a href="#">Coming soon</a></h3>
-                    <p class="post-meta">Published on <time datetime="2025-12-15">December 15, 2025</time></p>
-                </header>
-                <div class="post-excerpt">
-                    <p>This is a placeholder for another journal entry. The content would be rendered here from a Markdown file, providing a brief excerpt to entice the reader.</p>
-                </div>
-                <a href="#" class="btn btn-secondary">Read More</a>
-            </article>
-
-            <!-- End of dynamic content -->
+            
         </div>
     </main>
 
