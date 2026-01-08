@@ -1,18 +1,64 @@
-<!-- FILE: post.html -->
-<!-- This file serves as a template for a single journal post. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How cloudinfrastructure.org came to life using AI to accelerate product work and answer complex cloud networking questions.">
+    <meta name="author" content="Wayne Correa">
+    <meta name="robots" content="index, follow">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#0b1220">
+    <link rel="canonical" href="https://waynecorrea.com/post.html">
+    <meta property="og:title" content="The Augmented Product Manager | Wayne Correa">
+    <meta property="og:description" content="A practical story on using AI to move from a cloud networking data challenge to a working product.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://waynecorrea.com/post.html">
+    <meta property="og:site_name" content="Wayne Correa">
+    <meta property="og:image" content="https://waynecorrea.com/screen.png">
+    <meta property="og:image:alt" content="Wayne Correa portfolio preview">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2026-01-01">
+    <meta property="article:modified_time" content="2026-01-08">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Augmented Product Manager | Wayne Correa">
+    <meta name="twitter:description" content="A practical story on using AI to move from a cloud networking data challenge to a working product.">
+    <meta name="twitter:image" content="https://waynecorrea.com/screen.png">
     <title>The Augmented Product Manager | Wayne Correa</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "The Augmented Product Manager",
+            "datePublished": "2026-01-01",
+            "dateModified": "2026-01-08",
+            "author": {
+                "@type": "Person",
+                "name": "Wayne Correa",
+                "url": "https://waynecorrea.com/"
+            },
+            "publisher": {
+                "@type": "Person",
+                "name": "Wayne Correa",
+                "url": "https://waynecorrea.com/"
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://waynecorrea.com/post.html"
+            },
+            "image": [
+                "https://waynecorrea.com/screen.png"
+            ],
+            "description": "A practical story on using AI to move from a cloud networking data challenge to a working product."
+        }
+    </script>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="90418307-acbb-4568-a48c-1b151766dad0"></script>
 </head>
-<body>
+<body data-theme="dark">
     <header class="site-header">
         <div class="container">
             <div class="header-content">
@@ -20,7 +66,7 @@
                     <h1 class="header-name">Wayne Correa</h1>
                     <div class="header-contact-links">
                         <a href="mailto:email@waynecorrea.com"><i data-feather="mail"></i> email@waynecorrea.com</a>
-                        <a href="https://www.linkedin.com/in/waynecorrea" target="_blank"><i data-feather="linkedin"></i> LinkedIn</a>
+                        <a href="https://www.linkedin.com/in/waynecorrea" target="_blank" rel="noopener noreferrer"><i data-feather="linkedin"></i> LinkedIn</a>
                     </div>
                 </div>
                 <nav class="main-nav">
@@ -81,6 +127,7 @@
             <header class="post-full-header">
                 <h1 class="post-full-title">The Augmented Product Manager</h1>
                 <p class="post-meta">Published on <time datetime="2026-01-01">January 1, 2026</time> by Wayne Correa</p>
+                <img src="posts/journey.png" alt="Visual journey of the augmented product manager" loading="lazy">
             </header>
 
             <div class="post-full-content">
@@ -89,7 +136,7 @@
                 <p>What started as a small “what-if” experiment using AI to explore that question quickly evolved into <a href="https://cloudinfrastructure.org">cloudinfrastructure.org</a>, a working solution that maps interconnection patterns across networks, facilities, and cloud on-ramps. This was not a thought exercise; it is a real example of using AI as a tool to move from constraint to a shipped solution in days, not months.</p>
                 <p>For Product Managers, especially in cloud networking, this story is a blueprint for turning vague, complex infrastructure questions into concrete tools that your customers can actually use.</p>
                 <h2>PeeringDB: Powerful, but Hard to Interrogate</h2>
-                <p><img src="/images/peeringdb.png" alt="Image Description"></p>
+                <p><img src="posts/peeringdb.png" alt="PeeringDB homepage showing the interconnection database overview" loading="lazy" width="1031" height="450"></p>
                 <p>If you work in networking, PeeringDB is already familiar. It is the community-driven registry of networks, facilities, Internet Exchange Points (IXPs), and private interconnection points: a shared source of truth for how the internet physically fits together.</p>
                 <p>In practice, it functions like a directory for internet infrastructure, a description of who is present where, and how networks meet at IBX sites and other facilities.</p>
                 <p>However, PeeringDB is optimized for record lookup, not for answering cross-cutting, strategic questions. It is a rich library with a limited card catalog: you can easily look up a single network or facility, but it is painful to ask questions like:</p>
@@ -102,6 +149,7 @@
                 <p>Answering that with manual exports and spreadsheets (which I am very comfortable with and had previously used for years to answer these types of questions), would take days. With one arm immobilized, even that brute-force option was off the table, which turned into a forcing function to find a higher-leverage approach.</p>
                 <h2>From Constraint to AI-First Approach</h2>
                 <p>The work did not begin with “build me a website.” It began with the same questions any Product Manager should ask: What is the user’s actual question? What decisions depend on the answer? What data exists, and how hard is it to use? The difference in this case was that my primary assistant was an AI tool, not another teammate.</p>
+                <p><img src="posts/Three-step_process_for_using_AI_as_a_PM_tool.png" alt="Three-step process for using AI as a product management tool" loading="lazy"></p>
                 <h3>Step 1: Understand and Normalize the Data</h3>
                 <p>The first prompts focused on understanding the PeeringDB API and its structure. Instead of reading every page of documentation manually, I asked the AI to explain all of the endpoints in the PeeringDB API and generate Python examples to pull those resources.</p>
                 <p>This yielded, a clear view of what data was available for me to use in my analysis and how it was structured in the database:</p>
@@ -205,7 +253,7 @@
                     <a href="mailto:email@waynecorrea.com">email@waynecorrea.com</a>
                 </div>
                 <div class="footer-links">
-                    <a href="https://www.linkedin.com/in/waynecorrea" target="_blank">LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/waynecorrea" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 </div>
             </div>
             <div class="footer-copyright">
@@ -215,8 +263,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        feather.replace();
-    </script>
 </body>
 </html>

@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const navMenu = document.querySelector('.nav-menu');
     const dropdowns = document.querySelectorAll('.main-nav .dropdown');
     const settingsToggle = document.querySelector('.settings-toggle');
-    const settingsMenu = document.querySelector('.settings-menu');
     const themeSelect = document.getElementById('theme-select');
 
     // Toggle mobile menu
@@ -52,23 +51,14 @@ document.addEventListener('DOMContentLoaded', function () {
     if (themeSelect) {
         // Function to apply theme
         const applyTheme = (theme) => {
-            if (theme === 'dark') {
-                document.body.classList.add('dark-mode');
-            } else {
-                document.body.classList.remove('dark-mode');
-            }
-            themeSelect.value = theme; // Update dropdown selection
-            localStorage.setItem('theme', theme); // Save preference
+            document.body.dataset.theme = theme;
+            themeSelect.value = theme;
+            localStorage.setItem('theme', theme);
         };
 
         // Check for saved theme on load
         const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            applyTheme(savedTheme); // Apply saved theme directly
-        } else {
-            // Default to light if no theme is saved
-            applyTheme('light');
-        }
+        applyTheme(savedTheme || 'dark');
 
         themeSelect.addEventListener('change', function () {
             applyTheme(this.value);
