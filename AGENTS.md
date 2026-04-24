@@ -1,15 +1,19 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- `index.html`, `about.html`, `projects.html`, `post.html`: Page templates and content markup.
+- `site.config.json`: Site-wide metadata and shared navigation data.
+- `tools/build_site.py`: Local no-dependency build script for generated journal pages and sitemap updates.
+- `posts/*.md`: Source of truth for journal content.
+- `index.html`, `post.html`, `posts/*.html`, `sitemap.xml`: Generated output for the journal experience.
+- `about.html`, `projects.html`: Hand-authored static pages with build-time injected nav dropdown content.
 - `styles.css`: Global styles, CSS variables, and responsive rules.
 - `script.js`: Vanilla JS behavior (navigation, theme, UI interactions).
-- `posts/`: Markdown source for journal posts (for example, `posts/week2.md`).
+- `posts/`: Markdown source plus post assets (for example, `posts/the-augmented-product-manager.md`).
 - `screen.png`: Static asset used in the site.
 - `CNAME`: Custom domain for GitHub Pages.
 
 ## Build, Test, and Development Commands
-- No build step or dependencies. Edit files directly.
+- Build generated pages locally with `python tools/build_site.py`.
 - Local preview:
   - `python -m http.server 8000` (Python 3)
   - `npx http-server` (Node, if installed)
@@ -24,8 +28,10 @@
 ## Testing Guidelines
 - No automated test framework in this repo.
 - Manual checks before changes:
+  - Run `python tools/build_site.py` and confirm it completes without errors.
   - Desktop and mobile widths (320px, 768px, 1440px).
   - Navigation, dropdowns, and theme toggle.
+  - Journal index, latest post, and generated `posts/*.html` links.
   - Console free of errors.
 
 ## Commit & Pull Request Guidelines
@@ -39,3 +45,5 @@
 ## Configuration & Deployment Notes
 - Hosted on GitHub Pages; custom domain is defined in `CNAME`.
 - External dependencies: Google Fonts and Feather Icons via CDN.
+- Deployment is still Git-based static hosting. The required local workflow is: edit source files, run `python tools/build_site.py`, preview locally, then commit and push the generated static files.
+- Prefer editing `posts/*.md` and `site.config.json` instead of hand-editing generated journal HTML.

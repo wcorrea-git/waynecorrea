@@ -1,0 +1,19 @@
+{
+    "site_url": "https://waynecorrea.com",
+    "site_name": "Wayne Correa",
+    "email": "email@waynecorrea.com",
+    "linkedin_url": "https://www.linkedin.com/in/waynecorrea",
+    "theme_color": "#0b1220",
+    "social_image": "screen.png",
+    "analytics_website_id": "90418307-acbb-4568-a48c-1b151766dad0",
+    "projects_dropdown": [
+        {
+            "href": "projects.html#project-peeringdb",
+            "label": "Cloud Infrastructure Insights"
+        },
+        {
+            "href": "projects.html#project-geo-boundary",
+            "label": "Geo-Boundary Compliance"
+        }
+    ]
+}
