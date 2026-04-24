@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "768d0da2d0993ff0",
+            "id": "87af9203977abc7d",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -183,6 +183,10 @@
       "bases:Create new base": false
     }
   },
-  "active": "768d0da2d0993ff0",
-  "lastOpenFiles": []
+  "active": "87af9203977abc7d",
+  "lastOpenFiles": [
+    "AI Class Project was the setup not the story.md",
+    "posts/the-class-project-was-the-setup-not-the-story.html",
+    "posts/the-class-project-was-the-setup-not-the-story.md"
+  ]
 }

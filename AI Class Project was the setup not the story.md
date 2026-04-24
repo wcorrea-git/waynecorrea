@@ -1,18 +1,3 @@
----
-title: The Class Project Was The Setup, Not The Story
-author: Wayne Correa
-date: 2026-04-24
-updated: 2026-04-24
-draft: false
-slug: the-class-project-was-the-setup-not-the-story
-description: An AI class project started as a simple assignment and turned into a bigger question about what companies can actually prove about where their data goes.
-excerpt: I built a sandbox app for an AI product management class, but the real outcome was not the app. It was the realization that many teams can say where a system lives, yet still struggle to prove where its traffic actually went.
-tags:
-  - datasovereignty
-  - cloudnetworking
-  - linkedin
----
-
 Most class projects end when the assignment is done.
 
 This one did the opposite.
@@ -46,6 +31,8 @@ On paper, the class assignment was about AI-assisted building. In practice, it b
 That changed the kind of questions I asked.
 
 Not "What would sound right in a slide deck?"
+
+Not "What answer would make the conversation go away?"
 
 But "What could I responsibly claim if someone asked me to prove it?"
 
@@ -139,10 +126,11 @@ It is not enough to say where the workload lives and assume that settles everyth
 
 That is the conversation I want to keep exploring.
 
-GeoGuard may keep showing up, but mostly as my lab test tool. It helped me surface the problem, not solve it. The app was the setup. The real story is the gap it revealed between storage and movement, between confidence and proof, and between saying something should stay within a boundary and demonstrating what actually happened.
+GeoGuard will keep showing up, but mostly as a lab instrument. It helped me surface the problem, not solve it once and for all. The app was the setup. The real story is the gap it revealed between storage and movement, between confidence and proof, and between saying something should stay within a boundary and demonstrating what actually happened.
 
 That is the thread I am pulling on next.
 
 The next post will start with the distinction that sits underneath all of this:
 
 Data residency is not the same thing as data in transit.
+

@@ -2,18 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://waynecorrea.com</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-04-24</lastmod>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://waynecorrea.com/about.html</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-04-24</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://waynecorrea.com/projects.html</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-04-24</lastmod>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://waynecorrea.com/posts/the-class-project-was-the-setup-not-the-story.html</loc>
+        <lastmod>2026-04-24</lastmod>
+        <priority>0.6</priority>
     </url>
     <url>
         <loc>https://waynecorrea.com/posts/the-augmented-product-manager.html</loc>
