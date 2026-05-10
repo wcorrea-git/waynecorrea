@@ -1,9 +1,9 @@
 ---
 title: Data Residency Is Not The Same Thing As Data In Transit
 author: Wayne Correa
-date: 2026-04-24
-updated: 2026-04-24
-draft: true
+date: 2026-05-10
+updated: 2026-05-10
+draft: false
 slug: data-residency-is-not-the-same-thing-as-data-in-transit
 description: A LinkedIn-ready draft explaining why region selection answers a storage question, not a full sovereignty question.
 excerpt: Choosing the right region is often presented as the answer to a sovereignty requirement. In reality, it is only one piece of the story because residency answers a storage question, not a network-path question.
