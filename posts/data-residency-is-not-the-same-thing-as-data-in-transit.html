@@ -130,6 +130,7 @@
             <header class="post-full-header">
                 <h1 class="post-full-title">Data Residency Is Not The Same Thing As Data In Transit</h1>
                 <p class="post-meta">Published on <time datetime="2026-05-10">May 10, 2026</time> by Wayne Correa</p>
+                <img src="data_Sov.png" alt="Illustration representing data sovereignty, geography, and network transit" loading="lazy">
             </header>
 
             <div class="post-full-content">
@@ -139,50 +140,60 @@
                 <p>Those are important questions.</p>
                 <p>They are just not the only questions anymore.</p>
                 <p>If the claim is &quot;our data remains in the EU&quot; or &quot;customer traffic stays in-country,&quot; that statement carries a meaning that goes beyond storage.</p>
-                <p>It suggests something about transit.</p>
-                <p>It suggests something about jurisdiction.</p>
-                <p>It implies some degree of control over the path data took between endpoints.</p>
+                <ul>
+                <li>It suggests something about transit.</li>
+                <li>It suggests something about jurisdiction.</li>
+                <li>It implies some degree of control over the path data took between endpoints.</li>
+                </ul>
                 <p>That is where the problem starts.</p>
-                <p>Residency is mostly a storage and placement answer.</p>
-                <p>Transit is a network answer.</p>
+                <p>Data residency is mostly a storage and placement answer.</p>
+                <p>Data in transit is a network answer.</p>
                 <p>Those are related, but they are not interchangeable.</p>
-                <p>A workload can be deployed in the right geography and still depend on paths that are difficult to explain with confidence. Traffic can traverse intermediaries, cross provider boundaries, hit control points the customer does not manage directly, or move across backbones that are optimized for resilience and performance rather than customer-visible sovereignty controls.</p>
-                <p>None of that automatically means a provider failed.</p>
-                <p>It does mean the language we use is often stronger than the evidence we have.</p>
-                <p>That gap matters because compliance conversations are shifting.</p>
-                <p>Customers, auditors, and regulators increasingly want more than a screenshot showing a deployment region. They want to understand what assurances exist for the whole data-handling chain, including movement in transit.</p>
-                <p>And if we are honest, many organizations are still answering that newer question with an older toolset.</p>
-                <p>We know how to say:</p>
+                <p>A workload can be deployed in the right geography and still depend on network paths that are difficult to explain, verify, or defend. Traffic can cross geographic boundaries or move across backbones optimized for resilience and performance rather than sovereignty.</p>
+                <p>Customers, auditors, and regulators increasingly want more than a deployment region. They want to understand what assurances exist for the whole data plane, including movement in transit.</p>
+                <p>Teams know how to say:</p>
                 <ul>
                 <li>&quot;The database is hosted in-region.&quot;</li>
                 <li>&quot;Backups are confined to approved geographies.&quot;</li>
                 <li>&quot;The control plane has a regional option.&quot;</li>
                 </ul>
-                <p>We are much less consistent when the question becomes:</p>
+                <p>They are much less consistent when the question becomes:</p>
                 <ul>
                 <li>&quot;What path did traffic take?&quot;</li>
                 <li>&quot;Which jurisdictions did it traverse?&quot;</li>
                 <li>&quot;What evidence supports that assertion?&quot;</li>
                 <li>&quot;How much of that answer is design intent versus observed proof?&quot;</li>
                 </ul>
-                <p>This is one reason the phrase &quot;data sovereignty&quot; can become muddy so fast.</p>
-                <p>Different people hear different things:</p>
+                <p>This is why the phrase &quot;data sovereignty&quot; gets muddy so fast.</p>
+                <p>A simpler framing is more useful:</p>
                 <ul>
-                <li>legal teams may hear jurisdiction and access</li>
-                <li>cloud teams may hear regional deployment</li>
-                <li>network teams may hear path control and carrier choices</li>
-                <li>auditors may hear documentation and evidence quality</li>
+                <li><strong>Data residency is a storage answer</strong></li>
+                <li><strong>Data in transit is a path answer</strong></li>
                 </ul>
-                <p>Everyone is partly right, but the discussion breaks down when we collapse those layers into one clean sentence.</p>
-                <p>That is why I keep coming back to a simple framing:</p>
-                <p>Data residency is a storage answer.</p>
-                <p>Data in transit is a path answer.</p>
                 <p>Data sovereignty is broader than both, because it includes who had control, which legal domains applied, and whether the evidence behind the claim is strong enough to stand up under scrutiny.</p>
-                <p>The practical issue is not that teams are careless.</p>
-                <p>The practical issue is that the infrastructure stack is complicated, and many of the networks involved are not fully transparent to the customer consuming the service.</p>
-                <p>Cloud architectures abstract complexity for good reasons. That abstraction is one reason they are so powerful.</p>
-                <p>But abstraction also makes it easier to confuse a placement decision with a full proof statement.</p>
-                <p>That is where I think teams need to get more precise.</p>
+                <h2>Endpoint Geography And Path Geography Are Different Problems</h2>
+                <p>This is the technical distinction underneath the broader argument.</p>
+                <p>Endpoint geography asks:</p>
+                <p><strong>Where is the application, database, service, or storage instance located?</strong></p>
+                <p>That is usually the easier question.</p>
+                <p>It can often be answered with deployment configuration, region settings, infrastructure inventory, or provider documentation.</p>
+                <p>Path geography asks something harder:</p>
+                <p><strong>Where did the traffic actually travel between source and destination?</strong></p>
+                <p>That question gets messy fast.</p>
+                <p>Even in architectures that appear geographically compliant at the application or cloud layer, the actual transit path can still be shaped by:</p>
+                <ul>
+                <li>provider-controlled backbone routing</li>
+                <li>automatic failover behavior</li>
+                <li>traffic-engineering policies optimized for performance or resiliency</li>
+                <li>inter-provider and carrier handoffs</li>
+                <li>dynamic congestion management</li>
+                <li>limited customer visibility into internal path decisions</li>
+                </ul>
+                <p>That is why endpoint geography and path geography are not interchangeable.</p>
+                <p>Endpoint geography is often about inventory.</p>
+                <p>Path geography is about observation and proof.</p>
+                <p>They require different tools and different levels of confidence.</p>
+                <p>That is the core reason a region selection is not the same thing as a sovereignty proof statement.</p>
                 <p>There is a meaningful difference between these two claims:</p>
                 <ul>
                 <li>&quot;We configured the workload to reside in an approved geography.&quot;</li>
@@ -190,17 +201,100 @@
                 </ul>
                 <p>The first may be true.</p>
                 <p>The second requires a much higher bar.</p>
-                <p>It requires telemetry.</p>
-                <p>It requires correlation.</p>
-                <p>It requires clarity about what portion of the path you actually control and what portion you can only infer.</p>
-                <p>That distinction is not just technical hygiene. It is credibility.</p>
-                <p>If your controls are strong, say so.</p>
-                <p>If your evidence is partial, say that too.</p>
-                <p>In sovereignty discussions, overclaiming is usually more dangerous than admitting where the limits are.</p>
-                <p>That is one of the biggest things my GeoGuard sandbox made concrete for me. Even a rough attempt to model the problem makes it obvious that storage location and transit behavior answer different questions.</p>
-                <p>The next step is understanding why.</p>
-                <p>In the next post, I will break down the technical distinction underneath this issue:</p>
-                <p>Endpoint geography and path geography are different problems.</p>
+                <p>It requires clarity about what portion of the path is actually controlled, what portion a provider controls, and what portion can only be inferred.</p>
+                <p>That distinction is not just technical hygiene.</p>
+                <p>It is credibility.</p>
+                <p><img src="loss-of-path.png" alt="Diagram showing why path control can be lost after handoff" loading="lazy"></p>
+                <h2>The Biggest Risk Is Loss Of Path Control After Handoff</h2>
+                <p>The attachment point is not the same thing as the full transit path.</p>
+                <p>A connection can look geographically constrained at ingress and still become much broader after traffic leaves that first edge.</p>
+                <p>A simple path such as:</p>
+                <p>Customer router -&gt; private interconnection -&gt; cloud edge in Frankfurt</p>
+                <p>can look sovereign on paper.</p>
+                <p>But after ingress:</p>
+                <ul>
+                <li>the cloud provider may replicate data elsewhere</li>
+                <li>route across another metro</li>
+                <li>fail over through another country</li>
+                <li>centralize inspection in a different jurisdiction</li>
+                <li>or use internal backbone optimizations invisible to the customer</li>
+                </ul>
+                <p>The most operationally dangerous scenario is failover.</p>
+                <p>Normal state:</p>
+                <p>Paris -&gt; Frankfurt</p>
+                <p>Failure event:</p>
+                <p>Paris -&gt; London -&gt; Frankfurt</p>
+                <p>From the customer perspective, the service can remain healthy.</p>
+                <p>The connection can stay up.</p>
+                <p>Latency may barely change.</p>
+                <p>Monitoring may still look normal.</p>
+                <p>Geographically, however, the traffic may have crossed an unintended jurisdiction.</p>
+                <p>That is why attachment-point geography should not be confused with full-path geography.</p>
+                <h2>What A Stronger Solution Starts To Look Like</h2>
+                <p>A more credible approach is to enforce geography inside a provider-controlled backbone instead of treating geography as a best-effort outcome.</p>
+                <p>A provider can do that by creating geographically constrained forwarding domains that keep customer traffic inside defined sovereign or regulatory boundaries.</p>
+                <p>The core idea is not just where the workload lives.</p>
+                <p>It is where packets are actually allowed to travel while in transit across the provider network.</p>
+                <p>In that model:</p>
+                <ul>
+                <li>the provider backbone has explicit geography-aware path policies</li>
+                <li>infrastructure and transport segments are classified according to sovereign or regulatory boundaries</li>
+                <li>routing decisions are calculated against those geography constraints inside the control plane</li>
+                <li>traffic associated with a specific sovereign policy is only allowed to use paths that satisfy that geography&#x27;s rules</li>
+                </ul>
+                <p>That allows isolated routing domains such as:</p>
+                <ul>
+                <li>United States only</li>
+                <li>Canada only</li>
+                <li>European Union only</li>
+                </ul>
+                <p>Take a simple example.</p>
+                <p>A customer purchases a sovereign connection confined to the United States.</p>
+                <p>The network then:</p>
+                <ul>
+                <li>assigns that service to a US-specific path policy</li>
+                <li>restricts valid paths to links and nodes eligible for US-only transport</li>
+                <li>prevents traffic from traversing international transit links</li>
+                <li>drops traffic if no compliant path exists</li>
+                </ul>
+                <p>So even if a lower-latency or operationally preferred route exists through another country, the control plane does not consider it valid for that customer&#x27;s traffic.</p>
+                <p>The same idea applies to an EU regional zone:</p>
+                <ul>
+                <li>traffic may traverse multiple EU member states</li>
+                <li>but cannot exit the defined EU geography</li>
+                <li>paths crossing non-EU countries are excluded from path computation</li>
+                </ul>
+                <p>This is different from traditional cloud routing because:</p>
+                <ul>
+                <li>cloud paths are largely provider-optimized and opaque</li>
+                <li>policy-constrained backbone routing allows deterministic in-zone forwarding</li>
+                <li>the provider explicitly controls which backbone segments are eligible</li>
+                </ul>
+                <p><img src="better together.png" alt="Diagram showing a better-together cloud-to-cloud sovereignty model" loading="lazy"></p>
+                <h2>Better Together: Cloud-To-Cloud Sovereignty</h2>
+                <p>This is also where a cloud-to-cloud model becomes more interesting.</p>
+                <p>Consider a regulated workload running in one approved cloud region that needs to exchange data with an application, analytics platform, or recovery service running in another approved cloud region within the same sovereign zone.</p>
+                <p>If those two clouds are connected through ordinary opaque transit, the workload placement may be compliant while the path between them remains difficult to explain.</p>
+                <p>A stronger model is to use a private network provider between the two cloud attachment points and apply in-zone path controls across that provider-controlled segment.</p>
+                <p>In that model:</p>
+                <ul>
+                <li>one cloud provides the approved workload location</li>
+                <li>the second cloud provides the approved destination service</li>
+                <li>the network provider provides the constrained transit domain between them</li>
+                </ul>
+                <p>That is the better-together answer.</p>
+                <p>The clouds help answer where the workloads live.</p>
+                <p>The network provider helps constrain where the packets are allowed to travel between them.</p>
+                <p>It still does not solve every sovereignty question by itself.</p>
+                <p>But it creates a much stronger architecture for cloud-to-cloud sovereignty than simply assuming two in-region deployments automatically imply an in-region path.</p>
+                <h2>Why This Matters</h2>
+                <p>This kind of architecture has real compliance value.</p>
+                <p>It helps reduce the risk of unintended cross-border transit.</p>
+                <p>It provides stronger architectural assurance that traffic remains within the selected zone.</p>
+                <p>It is especially relevant for government, healthcare, finance, and critical infrastructure environments.</p>
+                <p>The claim is architectural, not absolute:</p>
+                <p><strong>&quot;Customer traffic is constrained to provider-controlled backbone paths that are algorithmically restricted to infrastructure located entirely within the selected sovereign geography.&quot;</strong></p>
+                <p>That is a much stronger answer than a region label alone.</p>
             </div>
         </article>
     </main>
