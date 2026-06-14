@@ -11,5 +11,10 @@
 .vscode/
 .idea/
 
+# Local notes and editor trash
+.trash/
+changes.md
+Staff Product Manager Networking.md
+
 # Logs
 *.log

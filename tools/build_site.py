@@ -532,6 +532,7 @@ def render_header(
                                 <li><a href="{html.escape(about_href, quote=True)}#about">About</a></li>
                                 <li><a href="{html.escape(about_href, quote=True)}#progression">Career</a></li>
                                 <li><a href="{html.escape(about_href, quote=True)}#achievements">Impact</a></li>
+                                <li><a href="{html.escape(about_href, quote=True)}#public-references">Public References</a></li>
                                 <li><a href="{html.escape(about_href, quote=True)}#expertise">Expertise</a></li>
                                 <li><a href="{html.escape(about_href, quote=True)}#experience">Experience</a></li>
                                 <li><a href="{html.escape(about_href, quote=True)}#contact">Contact</a></li>
@@ -579,8 +580,9 @@ def render_footer(config: dict) -> str:
 
 def render_index_page(config: dict, posts: list[Post], project_dropdown_html: str) -> str:
     description = (
-        "Journal and insights from Wayne Correa, a cloud infrastructure product leader "
-        "focused on cloud networking, product strategy, and leadership."
+        "Journal and insights from Wayne Correa, a cloud networking and infrastructure "
+        "product leader focused on data sovereignty, hybrid multicloud, AI infrastructure, "
+        "and network governance."
     )
     structured_data = json.dumps(
         {
@@ -591,7 +593,7 @@ def render_index_page(config: dict, posts: list[Post], project_dropdown_html: st
                     "@id": f'{config["site_url"]}/#waynecorrea',
                     "name": config["site_name"],
                     "url": config["site_url"],
-                    "jobTitle": "Cloud Infrastructure Product Leader",
+                    "jobTitle": "Cloud Networking and Infrastructure Product Leader",
                     "sameAs": [config["linkedin_url"]],
                 },
                 {

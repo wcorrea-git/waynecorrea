@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Projects and tools by Wayne Correa focused on cloud networking, infrastructure insights, and product strategy.">
+    <meta name="description" content="Projects and tools by Wayne Correa focused on cloud networking, data sovereignty, infrastructure insights, AI-assisted product strategy, and network governance.">
     <meta name="author" content="Wayne Correa">
     <meta name="robots" content="index, follow">
     <meta name="color-scheme" content="dark light">
     <meta name="theme-color" content="#0b1220">
     <link rel="canonical" href="https://waynecorrea.com/projects.html">
     <meta property="og:title" content="Projects | Wayne Correa">
-    <meta property="og:description" content="Cloud networking and infrastructure projects showcasing analytics tools and product leadership.">
+    <meta property="og:description" content="Cloud networking, data sovereignty, and infrastructure projects connected to product leadership across Fabric Geo Zones, FCR, and AI-assisted tools.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://waynecorrea.com/projects.html">
     <meta property="og:site_name" content="Wayne Correa">
@@ -19,7 +19,7 @@
     <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Projects | Wayne Correa">
-    <meta name="twitter:description" content="Cloud networking and infrastructure projects showcasing analytics tools and product leadership.">
+    <meta name="twitter:description" content="Cloud networking, data sovereignty, and infrastructure projects connected to product leadership across Fabric Geo Zones, FCR, and AI-assisted tools.">
     <meta name="twitter:image" content="https://waynecorrea.com/screen.png">
     <title>Projects | Wayne Correa</title>
     <link rel="stylesheet" href="styles.css">
@@ -36,7 +36,7 @@
                     "@id": "https://waynecorrea.com/#waynecorrea",
                     "name": "Wayne Correa",
                     "url": "https://waynecorrea.com/",
-                    "jobTitle": "Cloud Infrastructure Product Leader",
+                    "jobTitle": "Cloud Networking and Infrastructure Product Leader",
                     "sameAs": [
                         "https://www.linkedin.com/in/waynecorrea"
                     ]
@@ -74,6 +74,7 @@
                             <a href="index.html" class="nav-link" aria-haspopup="true">My Journal <i data-feather="chevron-down"></i></a>
                             <ul class="dropdown-menu">
                                 <!-- Build-time injected links to posts -->
+                                <li><a href="posts/what-fabric-geo-zones-changed-about-data-sovereignty.html">What Fabric Geo Zones Changed About Data Sovereignty</a></li>
                                 <li><a href="posts/data-residency-is-not-the-same-thing-as-data-in-transit.html">Data Residency Is Not The Same Thing As Data In Transit</a></li>
                                 <li><a href="posts/the-class-project-was-the-setup-not-the-story.html">The Class Project Was The Setup, Not The Story</a></li>
                                 <li><a href="posts/the-augmented-product-manager.html">The Augmented Product Manager</a></li>
@@ -86,7 +87,7 @@
                             <ul class="dropdown-menu">
                                 <!-- Build-time injected links to projects -->
                                 <li><a href="projects.html#project-peeringdb">Cloud Infrastructure Insights</a></li>
-                                <li><a href="projects.html#project-geo-boundary">Geo-Boundary Compliance</a></li>
+                                <li><a href="projects.html#project-geo-boundary">Geo-Boundary Evidence</a></li>
                                 <!-- End of injected links -->
                             </ul>
                         </li>
@@ -96,6 +97,7 @@
                                 <li><a href="about.html#about">About</a></li>
                                 <li><a href="about.html#progression">Career</a></li>
                                 <li><a href="about.html#achievements">Impact</a></li>
+                                <li><a href="about.html#public-references">Public References</a></li>
                                 <li><a href="about.html#expertise">Expertise</a></li>
                                 <li><a href="about.html#experience">Experience</a></li>
                                 <li><a href="about.html#contact">Contact</a></li>
@@ -146,6 +148,7 @@
                     <h3 class="project-title">GeoGuard Boundary Evidence Generator</h3>
                     <div class="project-description">
                         <p>The GeoGuard Boundary Evidence Generator is a compliance automation platform developed as a capstone project for the AI Product Management class. Designed for networking professionals, it addresses a critical friction point in global data sovereignty: the "Technical Wall" between complex network telemetry and non-technical legal auditors.</p>
+                        <p>GeoGuard was a sandbox for exploring the gap between data residency and data-in-transit proof. The same problem space later connected to my work on network-level sovereignty and Fabric Geo Zones, where the challenge is helping enterprises reason about where traffic flows, not just where workloads live.</p>
                         <p>In an era of tightening regulations like GDPR and various national data laws, multinational organizations must prove that sensitive traffic remains within specific sovereign borders. Currently, this requires network engineers to spend dozens of hours manually parsing cryptic BGP and NetFlow logs, a process that is reactive, error-prone, and often stalls enterprise sales cycles.</p>
                         <p>This project automates translating millions of technical data points into plain-English, auditor-ready executive narratives. Key features include cryptographic evidence signing for "verifiable trust" and anomaly forecasting to proactively identify routing risks.</p>
                         <p>The product strategy prioritizes data sovereignty through a tiered rollout: starting with a cloud-native beta and evolving into a localized, air-gapped virtual appliance in the future. This ensures that sensitive telemetry never leaves the customer's perimeter, satisfying the strictest security requirements of financial and government institutions. By reducing audit preparation time, the GeoGuard Boundary Evidence Pack Generator transforms network compliance from a technical bottleneck into a strategic business accelerator.</p>
